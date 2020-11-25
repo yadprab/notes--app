@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./public/styles/style.css">
+    <title>Notes app</title>
+</head>
+<body class="light">
+    <header>
+        <nav>
+            <section class="logo">
+                <h1>notes app</h1>
+
+            </section>
+
+     
+        
+            <section class="options--section" tabindex="0">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+<path fill-rule="evenodd" clip-rule="evenodd" d="M10 9C11.6569 9 13 7.65685 13 6C13 4.34315 11.6569 3 10 3C8.34315 3 7 4.34315 7 6C7 7.65685 8.34315 9 10 9ZM3 18C3 14.134 6.13401 11 10 11C13.866 11 17 14.134 17 18H3Z" fill="#0008"/>
+</svg>
+
+                
+              <ul class="nav--section ani hide">
+                <li><a href="index.html">home</a></li>
+                <li><a href="#">about</a></li>
+                 <li><a href="#">contact</a></li>
+                
+            </ul>
+            </section>
+
+        </nav>
+     
+    </header>
+    <main>
+           <section class="input--section">
+         <input type="search" name="search" id="search">
+         <button id="search--button">
+               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title-1 desc-1">
+            <title id="title-1">search button</title>
+            <desc id="desc-2">search icon</desc>
+
+<path fill-rule="evenodd" clip-rule="evenodd" d="M8 4C5.79086 4 4 5.79086 4 8C4 10.2091 5.79086 12 8 12C10.2091 12 12 10.2091 12 8C12 5.79086 10.2091 4 8 4ZM2 8C2 4.68629 4.68629 2 8 2C11.3137 2 14 4.68629 14 8C14 9.29583 13.5892 10.4957 12.8907 11.4765L17.7071 16.2929C18.0976 16.6834 18.0976 17.3166 17.7071 17.7071C17.3166 18.0976 16.6834 18.0976 16.2929 17.7071L11.4765 12.8907C10.4957 13.5892 9.29583 14 8 14C4.68629 14 2 11.3137 2 8Z" fill="#0004"/>
+</svg>
+         </button>
+        <section class="button---section">
+           
+     <button id="cancel--buuton" aria-label="cancel search">cancel</button>
+           
+        </section>
+
+        </section>
+        <section class="container">
+            <!-- <section class="notes--section">
+                <textarea name="text--area" id="text--area-1" disabled></textarea>
+
+            </section>
+             <section class="notes--section">
+                <textarea name="text--area" id="text--area-1"></textarea>
+
+            </section>
+             <section class="notes--section">
+                <textarea name="text--area" id="text--area-1"></textarea>
+
+            </section>
+             <section class="notes--section">
+                <textarea name="text--area" id="text--area-1"></textarea>
+
+            </section>
+             <section class="notes--section">
+                <textarea name="text--area" id="text--area-1"></textarea>
+
+            </section>
+             <section class="notes--section">
+                <textarea name="text--area" id="text--area-1"></textarea>
+
+            </section>
+             <section class="notes--section">
+                <textarea name="text--area" id="text--area-1"></textarea>
+
+            </section> -->
+
+        </section>
+
+
+        
+    </main>
+
+    <section class="add--button">
+             <button id="add--button" aria-label="add new notes">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"  aria-labelledby="title desc">
+                    <title id="title">add new notes icon</title>
+                    <desc id="desc"></desc>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M10 5C10.5523 5 11 5.44772 11 6V9L14 9C14.5523 9 15 9.44772 15 10C15 10.5523 14.5523 11 14 11H11V14C11 14.5523 10.5523 15 10 15C9.44771 15 9 14.5523 9 14V11H6C5.44772 11 5 10.5523 5 10C5 9.44771 5.44772 9 6 9L9 9V6C9 5.44772 9.44771 5 10 5Z" fill="#374151"/>
+</svg>
+
+                
+
+            </button>
+    </section>
+
+    <section class="notes--name hide">
+
+        <form action="/" method="POST">
+            <label for="file--name" id="file--name">enter your file name</label>
+            <input type="text" name="filename" id="file--name">
+        </form>
+
+    </section>
+
+
+    <script  type='module' src="./public/js/main.js"></script>
+   
+</body>
+</html>
