@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap");
 .light {
   --BG: hsl(0, 0%, 100%);
@@ -14,21 +15,19 @@
 }
 
 :root {
-  --font:'Lato',
-    sans-serif;
+  --font:"Lato",
+  sans-serif;
 }
 
 * {
   margin: 0;
   padding: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 *::after,
 *::before {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html {
@@ -50,33 +49,19 @@ body {
 header {
   max-width: 480px;
   background-color: var(--BG);
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
 }
-
 header nav {
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: flex-end;
+  align-items: center;
   padding: 1em;
 }
-
 header nav .logo {
   margin-right: auto;
 }
-
 header nav .options--section {
   width: 30px;
   height: 30px;
@@ -84,17 +69,10 @@ header nav .options--section {
   border-radius: 50%;
   position: relative;
   cursor: pointer;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
 }
-
 header nav ul {
   position: absolute;
   bottom: -140px;
@@ -106,31 +84,17 @@ header nav ul {
   border-radius: 5px;
   z-index: 11000;
   list-style: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.2);
-          box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.2);
-  -webkit-transform-origin: top right;
-          transform-origin: top right;
-  -webkit-transform: scale(0);
-          transform: scale(0);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.2);
+  transform-origin: top right;
+  transform: scale(0);
 }
-
 header nav ul li {
   margin: 0.5em 0;
 }
-
 header nav ul a {
   text-decoration: none;
   font-family: var(--font);
@@ -141,99 +105,73 @@ header nav ul a {
 
 main {
   max-width: 480px;
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[1];
-      grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: 1rem;
   padding: 1em;
 }
-
 main .input--section {
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
+  align-self: center;
   overflow: hidden;
   position: relative;
 }
-
 main .input--section input {
   width: 100%;
   height: 2rem;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  appearance: none;
   border: none;
   border-radius: 20px;
   padding: 0 2em;
   color: var(--Text-1);
   background-color: var(--BG);
 }
-
 main .input--section #search--button {
   position: absolute;
   top: 2px;
   left: 5px;
   bottom: 0;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  appearance: none;
   border: none;
   background-color: unset;
   pointer-events: none;
 }
-
 main .input--section .button---section {
   position: absolute;
   top: 0;
   right: 5px;
   bottom: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   background-color: var(--Text-1);
   border-radius: 20px;
   overflow: hidden;
 }
-
 main .input--section .button---section button {
   display: none;
 }
 
 .container {
   width: 100%;
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (150px)[auto-fit];
-      grid-template-columns: repeat(auto-fit, 150px);
+  grid-template-columns: repeat(auto-fit, 150px);
   grid-auto-rows: 150px;
   gap: 1rem;
   place-content: center;
 }
-
 .container textarea {
   width: 100%;
   height: 100%;
   resize: none;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  appearance: none;
   border: none;
   border-radius: 10px;
   background-color: var(--BG);
   color: var(--Text-1);
   font-family: var(--font);
   font-weight: 400;
-  -webkit-box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.2);
-          box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.2);
 }
-
 .container .notes--section {
   border-radius: 10px;
 }
@@ -248,31 +186,20 @@ main .input--section .button---section button {
   height: 50px;
   background-color: var(--accent);
   border-radius: 50%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
 }
-
 .add--button #add--button {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  appearance: none;
   border: none;
   background-color: unset;
   cursor: pointer;
 }
-
 .add--button #add--button svg {
   width: 30px;
   height: 30px;
 }
-
 .add--button #add--button svg path {
   fill: var(--BG);
 }
@@ -286,53 +213,58 @@ main .input--section .button---section button {
   z-index: 14000;
   background-color: rgba(0, 0, 0, 0.2);
   padding: 1em;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
 }
-
 .notes--name form {
   background-color: var(--BG);
   padding: 2em;
   height: 150px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
   width: 350px;
 }
-
 .notes--name form label {
   text-transform: capitalize;
   margin-bottom: 0.3em;
   color: var(--Text-2);
   letter-spacing: 1px;
 }
-
 .notes--name form input {
   width: 100%;
   height: 40px;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  appearance: none;
   border: none;
   border-bottom: 1px solid var(--border);
   color: var(--Text-1);
+}
+
+.notes--area {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  background: pink;
+  width: 100℅;
+  height: 100℅;
+}
+.notes--area aside {
+  background-color: palegreen;
+}
+.notes--area textarea {
+  resize: none;
+  width: 100℅;
+  height: 100℅;
+  background-color: #000;
+  appearance: none;
+  border: none;
+  color: --Text-1;
+}
+
+.temp {
+  padding: 0;
+  height: 100vh;
 }
 
 .hide {
@@ -340,32 +272,17 @@ main .input--section .button---section button {
 }
 
 .ani {
-  -webkit-animation: ani 0.4s ease-in forwards;
-          animation: ani 0.4s ease-in forwards;
-}
-
-@-webkit-keyframes ani {
-  0% {
-    -webkit-transform: scale(0);
-            transform: scale(0);
-  }
-  100% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
+  animation: ani 0.4s ease-in forwards;
 }
 
 @keyframes ani {
   0% {
-    -webkit-transform: scale(0);
-            transform: scale(0);
+    transform: scale(0);
   }
   100% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
 }
-
 .dark {
   --BG: hsl(228, 42%, 18%);
   --Top-BG-Pattern: hsl(225, 45%, 14%);
@@ -384,4 +301,5 @@ main .input--section .button---section button {
   --SoftRed: hsl(0, 93%, 68%);
   --DarkGrayishRed: hsl(0, 6%, 24%);
 }
+
 /*# sourceMappingURL=style.css.map */
