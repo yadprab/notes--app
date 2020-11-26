@@ -2,7 +2,7 @@ const express = require('express');
 
 const path = require('path');
 
-const axios = require('axios');
+const fetch = require('node-fetch');
 
 
 
@@ -10,12 +10,12 @@ const API_KEY = `AIzaSyBMtY1tYsvlOy-2iG44fHRyoRj6H_9a1h8`;
 
 const URL = `https://www.googleapis.com/webfonts/v1/webfonts?key=${API_KEY}`;
 
-const arr = []
+const arr =[]
 
 
- axios.get(URL)
-     .then(res=>arr.push(res.data))
-     .catch(err=>console.log(err))
+
+ 
+
 
 
 
@@ -53,15 +53,17 @@ app.post('/notes',urlencodedParser,(req, res)=>{
 
 })
 
-app.get('/notes',(req, res)=>{
+app.get('/notes', async(req, res)=>{
+  
+const fetch_res = await fetch(URL)
+const res_json = await fetch_res.json();
 
-
-res.json(arr)
+console.log(res_json);
+res.json(res_json.items);
   
    
 
 })
-
 
 
 
@@ -77,4 +79,6 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, ()=>{
     console.log('im in');
 })
+
+
 

@@ -2,7 +2,7 @@
 
 const notesAreaFn = ()=>{
   
-  console.log('hello')
+ 
   
  
  const data= {
@@ -20,15 +20,22 @@ const notesAreaFn = ()=>{
 
 
  }
- const arr = []
+ 
 
-fetch('/notes',op).then(res=>res.json()).then(data=>{arr.push(data)})
-
+const fetchData = async ()=>{
+  
+  const res = await fetch('/notes',op)
+  console.log(res)
+  
+  return data;
   
   
   
 }
+fetchData();
+console.log(fetchData())
 
+}
 
 
 
