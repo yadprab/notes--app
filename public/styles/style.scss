@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap');
+
 .light {
     --BG: hsl(0, 0%, 100%);
 
@@ -15,17 +16,27 @@
     --Cyan: hsl(180, 62%, 55%);
 
     --button--text: hsl(227, 45%, 30%);
-   --accent: hsl(0, 93%, 68%);
+    --accent: hsl(0, 93%, 68%);
 
     --border: rgba(0, 0, 0, 0.2);
 
+    --aside:hsl(0,0%,14%);
+
+    --asideTxt: hsl(0, 0%, 100%);
+
     --loader: hsl(240, 50%, 97%);
+
+    --fill:rgba(0, 0, 0, 0.8);
 }
 
-:root{
-    --font:'Lato',
-    sans-serif;
+:root {
+    --font: 'Lato',
+        sans-serif;
+
+    --fontWeight:400;
+ --Blue: hsl(212, 86%, 64%);
 }
+
 * {
     margin: 0;
     padding: 0;
@@ -54,43 +65,46 @@ body {
     background-color: var(--Top-BG-Pattern);
     position: relative;
 
+
 }
 
 
-header{
+header {
     max-width: 480px;
-   background-color: var(--BG);
+    background-color: var(--BG);
     display: flex;
     flex-direction: column;
 
 
 
-    nav{
+    nav {
         width: 100%;
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        padding: 1em ;
+        padding: 1em;
 
 
-        .logo{
+        .logo {
             margin-right: auto;
+            color: var(--Text-2);
         }
 
 
-        .options--section{
-             width: 30px;
-             height: 30px;
-             background-color:var(--Top-BG-Pattern);
-             border-radius: 50%;
-             position: relative;
-             cursor: pointer;
-             display: flex;
-             justify-content: center;
-             align-items: center;
-            
+        .options--section {
+            width: 30px;
+            height: 30px;
+            background-color: var(--Top-BG-Pattern);
+            border-radius: 50%;
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
         }
-        ul{
+
+        ul {
             position: absolute;
             bottom: -140px;
             right: 0px;
@@ -105,22 +119,22 @@ header{
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.2) ;
-       transform-origin: top right;
+            box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.2);
+            transform-origin: top right;
             transform: scale(0);
-           
-            li{
-                margin:  0.5em 0;
-                
+
+            li {
+                margin: 0.5em 0;
+
             }
 
-            a{
+            a {
                 text-decoration: none;
                 font-family: var(--font);
                 color: var(--button--text);
                 font-weight: 500;
                 text-transform: capitalize;
-                
+
             }
         }
     }
@@ -128,44 +142,45 @@ header{
 }
 
 
-main{
+main {
     max-width: 480px;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 1rem;
-         padding: 1em;
+    padding: 1em;
 
 
-    .input--section{
+    .input--section {
         align-self: center;
         overflow: hidden;
-   
+
         position: relative;
 
-        input{
+        input {
             width: 100%;
             height: 2rem;
             appearance: none;
             border: none;
             border-radius: 20px;
-            padding:0 2em;
+            padding: 0 2em;
             color: var(--Text-1);
             background-color: var(--BG);
 
-          
+
         }
-        #search--button{
+
+        #search--button {
             position: absolute;
             top: 2px;
             left: 5px;
             bottom: 0;
             appearance: none;
             border: none;
-            background-color:unset;
+            background-color: unset;
             pointer-events: none;
         }
 
-        .button---section{
+        .button---section {
             position: absolute;
             top: 0;
             right: 5px;
@@ -177,16 +192,16 @@ main{
             border-radius: 20px;
             overflow: hidden;
 
-            button{
+            button {
                 display: none;
             }
         }
     }
-    
+
 }
 
 
-.container{
+.container {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, 150px);
@@ -196,27 +211,27 @@ main{
 
 
 
-   
 
-    textarea{
+
+    textarea {
         width: 100%;
         height: 100%;
         resize: none;
         appearance: none;
         border: none;
-           border-radius: 10px;
-           background-color: var(--BG);
-           color: var(--Text-1);
-           font-family: var(--font);
-           font-weight: 400;
-           box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        background-color: var(--BG);
+        color: var(--Text-1);
+        font-family: var(--font);
+        font-weight: var(--fontWeight);
+        box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.2);
     }
 
 
 
-    .notes--section{
-        
-           border-radius: 10px;
+    .notes--section {
+
+        border-radius: 10px;
     }
 }
 
@@ -249,7 +264,7 @@ main{
             width: 30px;
             height: 30px;
 
-            path{
+            path {
                 fill: var(--BG);
             }
 
@@ -258,7 +273,7 @@ main{
     }
 }
 
-.notes--name{
+.notes--name {
     position: fixed;
     top: 0;
     left: 0;
@@ -272,7 +287,7 @@ main{
     align-items: center;
 
 
-    form{
+    form {
         background-color: var(--BG);
         padding: 2em;
         height: 150px;
@@ -282,14 +297,14 @@ main{
         flex-direction: column;
         width: 350px;
 
-        label{
+        label {
             text-transform: capitalize;
             margin-bottom: 0.3em;
             color: var(--Text-2);
             letter-spacing: 1px;
         }
 
-        input{
+        input {
             width: 100%;
             height: 40px;
             appearance: none;
@@ -301,57 +316,197 @@ main{
     }
 }
 
-.notes--area{
-  display: grid;
-  grid-template-columns: 80px 1fr;
-  background: pink;
-    width: 100℅;
-    height: 100℅;
-  
-  
-  aside{
-    background-color: palegreen;
-    
-    
-    
-    
+.notes--area {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+
+
+
+    aside {
+        background-color: var(--aside);
+        color: var(--asideTxt);
+        display: flex;
+        flex-direction: column;
+       
+
+
+       
+
+
+
+
+
+        button{
+            appearance: none;
+            border: none;
+            padding: 1em;
+            background-color: unset;
+            cursor: pointer;
+           
+            
+           
+
+            svg{
+                pointer-events: none;
+
+                path{
+                    stroke: var(--asideTxt);
+                }
+            }
+        }
+
+
+
+
+    }
+
+    .text--area {
+       width: 100%;
+        background-color: var(--CardBG);
+       color: var(--Text-2);
+        font-family: var(--font);
+        font-weight: var(--fontWeight);
+        padding: 1em;
+        word-break: break-all;
+     overflow: auto;
+
+
+
+
+
+    }
+
+
+}
+.fonts--section{
+
+ box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.4);
+  background-color: var(--Top-BG-Pattern);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+  width: 15rem;
+transform: translateX(150%);
+  h2 {
+      text-transform: capitalize;
+      font-size: 1.2rem;
+      font-weight: var(--fontWeight);
+       margin-bottom: 0.5em;
+      color: var(--Text-2);
+
+
+
   }
-  textarea{
-    resize: none;
-    width: 100℅;
-    height: 100℅;
-    background-color: #000;
-    appearance:none;
-    border: none;
-    color: #fff;
-    
-    
-    
+  h3{
+      font-size: 1rem;
+      text-transform: capitalize;
+      font-weight: var(--fontWeight);
+
+      color: var(--Text-2);
   }
-  
-  
+
+  .select--area{
+     
+      position: relative;
+  margin: 1em 0;
+      height: 2rem;
+
+
+      button{
+          position: absolute;
+          right:5px;
+          top: 0;
+          appearance: none;
+          border: none;
+          bottom: 0;
+          background-color: unset;
+          pointer-events: none;
+
+          svg{
+              width: 15px;
+              height: 15px;
+          }
+       
+ 
+        }
+  }
+
+
+
+    select{
+        width: 100%;
+       appearance: none;
+        height: 100%;
+       
+        border: 1px solid var(--Blue);
+        border-radius: 3px;
+        padding: 0em 2em 0 0;
+        background-color: var(--BG);
+        color: var(--Text-2);
+       
+      
+    }
+
+.grid--section{
+    display: grid;
+    grid-template-columns: repeat(2, 30px);
+    gap: 1rem;
+    place-content: center;
+
+    button{
+        appearance: none;
+        border: none;
+        cursor: pointer;
+        background-color: var(--Top-BG-Pattern);
+        padding: 1em;
+
+    }
+    svg{
+        width: 20px;
+        height: 20px;
+        pointer-events: none;
+        
+        path{
+            fill: var(--fill);
+        }
+       
+    }
+}
+
 }
 
 
+.temp {
+    padding: 0;
+    height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+ 
 
-.temp{
-  padding: 0;
-  height:100vh;
-  
-  
+
 }
-.hide{
+.show{
+    transform: translateX(0);
+}
+
+.hide {
     display: none;
 }
-.ani{
-animation: ani 0.4s ease-in forwards;
+
+.ani {
+    animation: ani 0.4s ease-in forwards;
 }
 
-@keyframes ani{
-    0%{
+@keyframes ani {
+    0% {
         transform: scale(0);
     }
-    100%{
+
+    100% {
         transform: scale(1);
     }
 }
@@ -378,10 +533,14 @@ animation: ani 0.4s ease-in forwards;
 
     --loader: hsl(0, 0%, 100%);
 
+    --asideTxt: hsl(0, 0%, 100%);
+
+    --fill:hsl(0, 0%, 100%);
+
 
 }
 
-.rosa{
+.rosa {
     --BG: linear-gradient(135deg, hsl(0, 0%, 100%), hsl(0, 100%, 98%));
     --DesaturatedRed: hsl(0, 36%, 70%);
     --SoftRed: hsl(0, 93%, 68%);

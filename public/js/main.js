@@ -24,10 +24,14 @@ console.log(form)
 
 
 const submitFn =(e)=>{
-  
+   
   const input = form.querySelector('input');
+
+  console.log(input);
   
-  const val = input.val;
+  const val = input.value;
+
+  form.reset();
   
   const props ={
     fileName: val,
@@ -35,6 +39,7 @@ const submitFn =(e)=>{
     
   }
    
+  console.log(props);
    
    localStorage.setItem('props', JSON.stringify(props));
    

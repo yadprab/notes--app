@@ -1,0 +1,557 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap");
+.light {
+  --BG: hsl(0, 0%, 100%);
+  --Top-BG-Pattern: hsl(240, 50%, 97%);
+  --CardBG: hsl(227, 47%, 96%);
+  --Text-1: hsl(228, 12%, 44%);
+  --Text-2: hsl(230, 17%, 14%);
+  --Toggle: hsl(230, 22%, 74%);
+  --Cyan: hsl(180, 62%, 55%);
+  --button--text: hsl(227, 45%, 30%);
+  --accent: hsl(0, 93%, 68%);
+  --border: rgba(0, 0, 0, 0.2);
+  --aside:hsl(0,0%,14%);
+  --asideTxt: hsl(0, 0%, 100%);
+  --loader: hsl(240, 50%, 97%);
+  --fill:rgba(0, 0, 0, 0.8);
+}
+
+:root {
+  --font: 'Lato',
+        sans-serif;
+  --fontWeight:400;
+  --Blue: hsl(212, 86%, 64%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+*::after,
+*::before {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+body {
+  line-height: 1.5;
+  font-family: var(--font);
+  background-color: var(--Top-BG-Pattern);
+  position: relative;
+}
+
+header {
+  max-width: 480px;
+  background-color: var(--BG);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+header nav {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1em;
+}
+
+header nav .logo {
+  margin-right: auto;
+  color: var(--Text-2);
+}
+
+header nav .options--section {
+  width: 30px;
+  height: 30px;
+  background-color: var(--Top-BG-Pattern);
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header nav ul {
+  position: absolute;
+  bottom: -140px;
+  right: 0px;
+  background-color: var(--BG);
+  padding: 2em;
+  width: 200px;
+  height: 150px;
+  border-radius: 5px;
+  z-index: 11000;
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.2);
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+}
+
+header nav ul li {
+  margin: 0.5em 0;
+}
+
+header nav ul a {
+  text-decoration: none;
+  font-family: var(--font);
+  color: var(--button--text);
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+main {
+  max-width: 480px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[1];
+      grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+  padding: 1em;
+}
+
+main .input--section {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  overflow: hidden;
+  position: relative;
+}
+
+main .input--section input {
+  width: 100%;
+  height: 2rem;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  border-radius: 20px;
+  padding: 0 2em;
+  color: var(--Text-1);
+  background-color: var(--BG);
+}
+
+main .input--section #search--button {
+  position: absolute;
+  top: 2px;
+  left: 5px;
+  bottom: 0;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  background-color: unset;
+  pointer-events: none;
+}
+
+main .input--section .button---section {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: var(--Text-1);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+main .input--section .button---section button {
+  display: none;
+}
+
+.container {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (150px)[auto-fit];
+      grid-template-columns: repeat(auto-fit, 150px);
+  grid-auto-rows: 150px;
+  gap: 1rem;
+  place-content: center;
+}
+
+.container textarea {
+  width: 100%;
+  height: 100%;
+  resize: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--BG);
+  color: var(--Text-1);
+  font-family: var(--font);
+  font-weight: var(--fontWeight);
+  -webkit-box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.container .notes--section {
+  border-radius: 10px;
+}
+
+.add--button {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  z-index: 1200;
+  bottom: 10px;
+  right: 10px;
+  width: 50px;
+  height: 50px;
+  background-color: var(--accent);
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.add--button #add--button {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  background-color: unset;
+  cursor: pointer;
+}
+
+.add--button #add--button svg {
+  width: 30px;
+  height: 30px;
+}
+
+.add--button #add--button svg path {
+  fill: var(--BG);
+}
+
+.notes--name {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 14000;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.notes--name form {
+  background-color: var(--BG);
+  padding: 2em;
+  height: 150px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 350px;
+}
+
+.notes--name form label {
+  text-transform: capitalize;
+  margin-bottom: 0.3em;
+  color: var(--Text-2);
+  letter-spacing: 1px;
+}
+
+.notes--name form input {
+  width: 100%;
+  height: 40px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  color: var(--Text-1);
+}
+
+.notes--area {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 50px 1fr;
+      grid-template-columns: 50px 1fr;
+}
+
+.notes--area aside {
+  background-color: var(--aside);
+  color: var(--asideTxt);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.notes--area aside button {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  padding: 1em;
+  background-color: unset;
+  cursor: pointer;
+}
+
+.notes--area aside button svg {
+  pointer-events: none;
+}
+
+.notes--area aside button svg path {
+  stroke: var(--asideTxt);
+}
+
+.notes--area .text--area {
+  width: 100%;
+  background-color: var(--CardBG);
+  color: var(--Text-2);
+  font-family: var(--font);
+  font-weight: var(--fontWeight);
+  padding: 1em;
+  word-break: break-all;
+  overflow: auto;
+}
+
+.fonts--section {
+  -webkit-box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.4);
+          box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.4);
+  background-color: var(--Top-BG-Pattern);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 2em;
+  width: 15rem;
+  -webkit-transform: translateX(150%);
+          transform: translateX(150%);
+}
+
+.fonts--section h2 {
+  text-transform: capitalize;
+  font-size: 1.2rem;
+  font-weight: var(--fontWeight);
+  margin-bottom: 0.5em;
+  color: var(--Text-2);
+}
+
+.fonts--section h3 {
+  font-size: 1rem;
+  text-transform: capitalize;
+  font-weight: var(--fontWeight);
+  color: var(--Text-2);
+}
+
+.fonts--section .select--area {
+  position: relative;
+  margin: 1em 0;
+  height: 2rem;
+}
+
+.fonts--section .select--area button {
+  position: absolute;
+  right: 5px;
+  top: 0;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  bottom: 0;
+  background-color: unset;
+  pointer-events: none;
+}
+
+.fonts--section .select--area button svg {
+  width: 15px;
+  height: 15px;
+}
+
+.fonts--section select {
+  width: 100%;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  height: 100%;
+  border: 1px solid var(--Blue);
+  border-radius: 3px;
+  padding: 0em 2em 0 0;
+  background-color: var(--BG);
+  color: var(--Text-2);
+}
+
+.fonts--section .grid--section {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (30px)[2];
+      grid-template-columns: repeat(2, 30px);
+  gap: 1rem;
+  place-content: center;
+}
+
+.fonts--section .grid--section button {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  cursor: pointer;
+  background-color: var(--Top-BG-Pattern);
+  padding: 1em;
+}
+
+.fonts--section .grid--section svg {
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+}
+
+.fonts--section .grid--section svg path {
+  fill: var(--fill);
+}
+
+.temp {
+  padding: 0;
+  height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.show {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+
+.hide {
+  display: none;
+}
+
+.ani {
+  -webkit-animation: ani 0.4s ease-in forwards;
+          animation: ani 0.4s ease-in forwards;
+}
+
+@-webkit-keyframes ani {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes ani {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+.dark {
+  --BG: hsl(228, 42%, 18%);
+  --Top-BG-Pattern: hsl(225, 45%, 14%);
+  --CardBG: hsl(228, 42%, 18%);
+  --Text-1: hsl(228, 34%, 66%);
+  --Text-2: hsl(0, 0%, 100%);
+  --button--text: hsl(0, 0%, 100%);
+  --Toggle: hsl(0, 0%, 100%);
+  --border: rgba(0, 0, 0, 0);
+  --loader: hsl(0, 0%, 100%);
+  --asideTxt: hsl(0, 0%, 100%);
+  --fill:hsl(0, 0%, 100%);
+}
+
+.rosa {
+  --BG: linear-gradient(135deg, hsl(0, 0%, 100%), hsl(0, 100%, 98%));
+  --DesaturatedRed: hsl(0, 36%, 70%);
+  --SoftRed: hsl(0, 93%, 68%);
+  --DarkGrayishRed: hsl(0, 6%, 24%);
+}
+/*# sourceMappingURL=style.css.map */

@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./public/styles/style.css">
+     <link rel="stylesheet" href="../styles/style.css">
     <title>Notes app</title>
 </head>
 <body class="light">
  <header>
-        <nav>
+         <nav>
             <section class="logo">
                 <h1>notes app</h1>
 
@@ -31,13 +31,43 @@
             </ul>
             </section>
 
-        </nav>
+        </nav> 
      
     </header>
     
     <main class="temp">
       <section class="notes--area">
         <aside>
+          <article>
+            <h2>file name</h2>
+
+            <button id="save--button"></button>
+            <button id="delete--button"></button>
+            <button id="copy--button"></button>
+
+
+
+
+          </article>
+
+          <section class="fonts--section">
+            <select name="fontName" id="font-name">
+              <option value="">1</option>
+               <option value="">2</option>
+                <option value="">3</option>
+            </select>
+             <select name="fontWeight" id="font-weight">
+              <option value="">1</option>
+               <option value="">2</option>
+                <option value="">3</option>
+            </select>
+             <select name="fontSize" id="font-Size">
+              <option value="">1</option>
+               <option value="">2</option>
+                <option value="">3</option>
+            </select>
+
+          </section>
           
         </aside>
         <textarea>
@@ -53,10 +83,13 @@
       
       
     </main>
+    
    
    
-   
-    <script  type='module' src="./public/notes.js"></script>
-   
+
+    
+    
+   <script type='module' src="../js/notes.js"></script>
 </body>
+
 </html>
