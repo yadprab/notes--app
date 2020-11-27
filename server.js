@@ -10,7 +10,7 @@ const API_KEY = `AIzaSyBMtY1tYsvlOy-2iG44fHRyoRj6H_9a1h8`;
 
 const URL = `https://www.googleapis.com/webfonts/v1/webfonts?key=${API_KEY}`;
 
-const arr =[]
+
 
 
 

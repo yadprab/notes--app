@@ -37,53 +37,181 @@
     
     <main class="temp">
       <section class="notes--area">
-        <aside>
+      
+           <aside>
           <article>
-            <h2>file name</h2>
+            
 
-            <button id="save--button"></button>
-            <button id="delete--button"></button>
-            <button id="copy--button"></button>
+            <button id="save--button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title-3 desc-3">
+                    <title id="title-3">save your file button</title>
+                    <desc id="desc-3">down arrow and box</desc>
+<path d="M8 7H5C3.89543 7 3 7.89543 3 9V18C3 19.1046 3.89543 20 5 20H19C20.1046 20 21 19.1046 21 18V9C21 7.89543 20.1046 7 19 7H16M15 11L12 14M12 14L9 11M12 14L12 4" stroke="#374151" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+            </button>
+            <button id="delete--button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title-4 desc-4">
+                    <title id="title-4">delete your file button</title>
+                    <desc>trash can</desc>
+<path d="M19 7L18.1327 19.1425C18.0579 20.1891 17.187 21 16.1378 21H7.86224C6.81296 21 5.94208 20.1891 5.86732 19.1425L5 7M10 11V17M14 11V17M15 7V4C15 3.44772 14.5523 3 14 3H10C9.44772 3 9 3.44772 9 4V7M4 7H20" stroke="#4A5568" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+            </button>
+            <button id="copy--button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title-5 desc-5">
+                     <title id="title-5">copy your file to clipboard button</title>
+                    
+<path d="M9 5H7C5.89543 5 5 5.89543 5 7V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V7C19 5.89543 18.1046 5 17 5H15M9 5C9 6.10457 9.89543 7 11 7H13C14.1046 7 15 6.10457 15 5M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5" stroke="#f4f4fb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+
+            </button>
+           
 
 
 
 
           </article>
 
-          <section class="fonts--section">
-            <select name="fontName" id="font-name">
-              <option value="">1</option>
-               <option value="">2</option>
-                <option value="">3</option>
+       
+         
+        </aside>
+        <section contenteditable="true" class="text--area">
+        
+        </section>
+         <section class="fonts--section  show">
+           <h2 contenteditable="true"> file name</h2>
+
+           <section class="font--type">
+             <h3>Change font type</h3>
+                <section class="select--area">
+             
+              <select name="fontName" id="font-name" autocomplete="off"> 
+                <option value="" disabled  selected>select font type</option>
+             
             </select>
-             <select name="fontWeight" id="font-weight">
-              <option value="">1</option>
-               <option value="">2</option>
-                <option value="">3</option>
+            <button class="drop">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M19 9L12 16L5 9" stroke="#4A5568" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+            </button>
+           </section>
+           </section>
+           <section class="fontweight hide">
+               <h3>change font weight</h3>
+              <section class="select--area">
+             
+               <select name="fontWeight" id="font--weight" autocomplete="off">
+                   <option value="" disabled  selected>select font Weight</option>
+              
             </select>
-             <select name="fontSize" id="font-Size">
-              <option value="">1</option>
-               <option value="">2</option>
-                <option value="">3</option>
+              <button class="drop">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M19 9L12 16L5 9" stroke="#4A5568" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+            </button>
+             </section>
+           </section>
+              <section class="font--subset hide">
+               <h3>change font subset</h3>
+              <section class="select--area">
+             
+               <select name="fontVariant" id="font--subset" autocomplete="off">
+                <option value="" disabled  selected>select font subset</option>
             </select>
+              <button class="drop">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M19 9L12 16L5 9" stroke="#4A5568" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+            </button>
+             </section>
+           </section>
+           <section class="fontSize">
+               <h3>change font size</h3>
+             <section class="select--area">
+              
+               <select name="fontSize" id="font-Size" autocomplete="off">
+              <option value="6">6pt</option>
+               <option value="8">8pt</option>
+                <option value="9">9pt</option>
+                <option value="10">10pt</option>
+               <option value="11">11pt</option>
+                <option value="12">12pt</option>
+                <option value="14">14pt</option>
+               <option value="18">18pt</option>
+                <option value="24">24pt</option>
+                <option value="30">30pt</option>
+               <option value="36">36pt</option>
+                <option value="48">48pt</option>
+                 <option value="72">72pt</option>
+            </select>
+             <button class="drop">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M19 9L12 16L5 9" stroke="#4A5568" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+            </button>
+             </section>
+           </section>
+           <section class="grid--section">
+             <button id="text-align">
+               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+<!--
+Font Awesome Free 5.15.0 by @fontawesome - https://fontawesome.com
+License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+-->
+<path d="M432 160H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm0 256H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zM108.1 96h231.81A12.09 12.09 0 0 0 352 83.9V44.09A12.09 12.09 0 0 0 339.91 32H108.1A12.09 12.09 0 0 0 96 44.09V83.9A12.1 12.1 0 0 0 108.1 96zm231.81 256A12.09 12.09 0 0 0 352 339.9v-39.81A12.09 12.09 0 0 0 339.91 288H108.1A12.09 12.09 0 0 0 96 300.09v39.81a12.1 12.1 0 0 0 12.1 12.1z"/></svg>
+             </button>
+                  <button id="text-align">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+<!--
+Font Awesome Free 5.15.0 by @fontawesome - https://fontawesome.com
+License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+-->
+<path d="M432 416H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm0-128H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm0-128H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm0-128H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z"/></svg>
+                  </button>
+                       <button id="text-align">
+                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+<!--
+Font Awesome Free 5.15.0 by @fontawesome - https://fontawesome.com
+License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+-->
+<path d="M12.83 352h262.34A12.82 12.82 0 0 0 288 339.17v-38.34A12.82 12.82 0 0 0 275.17 288H12.83A12.82 12.82 0 0 0 0 300.83v38.34A12.82 12.82 0 0 0 12.83 352zm0-256h262.34A12.82 12.82 0 0 0 288 83.17V44.83A12.82 12.82 0 0 0 275.17 32H12.83A12.82 12.82 0 0 0 0 44.83v38.34A12.82 12.82 0 0 0 12.83 96zM432 160H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm0 256H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16z"/></svg>
+                       </button>
+                            <button id="text-align">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+<!--
+Font Awesome Free 5.15.0 by @fontawesome - https://fontawesome.com
+License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+-->
+<path d="M16 224h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16zm416 192H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm3.17-384H172.83A12.82 12.82 0 0 0 160 44.83v38.34A12.82 12.82 0 0 0 172.83 96h262.34A12.82 12.82 0 0 0 448 83.17V44.83A12.82 12.82 0 0 0 435.17 32zm0 256H172.83A12.82 12.82 0 0 0 160 300.83v38.34A12.82 12.82 0 0 0 172.83 352h262.34A12.82 12.82 0 0 0 448 339.17v-38.34A12.82 12.82 0 0 0 435.17 288z"/></svg>
+                            </button>
+                            
+
+           </section>
+           
+        
+           
+             
 
           </section>
-          
-        </aside>
-        <textarea>
-          
-        </textarea>
-        
+     
         
         
       </section>
       
       
       
+     
       
       
     </main>
-    
+
+   
    
    
 
