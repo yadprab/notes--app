@@ -3,15 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="../styles/style.css">
-    <title>Notes app</title>
+     <link rel="stylesheet" href="/styles/style.css">
+    <title><%if (data.filename== '') { %>
+          untitled
+<% }else{ %>
+     <%= data.filename %>
+<% } %>              
+    
+    
+    </title>
 </head>
 <body class="light">
  <header>
          <nav>
             <section class="logo">
                 <h1>notes app</h1>
-
+              
+               
             </section>
 
      
@@ -22,15 +30,27 @@
 <path fill-rule="evenodd" clip-rule="evenodd" d="M10 9C11.6569 9 13 7.65685 13 6C13 4.34315 11.6569 3 10 3C8.34315 3 7 4.34315 7 6C7 7.65685 8.34315 9 10 9ZM3 18C3 14.134 6.13401 11 10 11C13.866 11 17 14.134 17 18H3Z" fill="#0008"/>
 </svg>
 
+
                 
               <ul class="nav--section ani hide">
-                <li><a href="index.html">home</a></li>
+                <li><a href="/">home</a></li>
                 <li><a href="#">about</a></li>
                  <li><a href="#">contact</a></li>
                 
             </ul>
             </section>
+            <button id="menu--button"> 
 
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title--sect desc--sect">
+                <title id="title--sect">menu button for text options</title>
+                <desc id="desc--sect"> three bars </desc>
+
+<path fill-rule="evenodd" clip-rule="evenodd" d="M3 5C3 4.44772 3.44772 4 4 4H16C16.5523 4 17 4.44772 17 5C17 5.55228 16.5523 6 16 6H4C3.44772 6 3 5.55228 3 5Z" fill="#4A5568"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M3 10C3 9.44772 3.44772 9 4 9H16C16.5523 9 17 9.44772 17 10C17 10.5523 16.5523 11 16 11H4C3.44772 11 3 10.5523 3 10Z" fill="#4A5568"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M3 15C3 14.4477 3.44772 14 4 14H16C16.5523 14 17 14.4477 17 15C17 15.5523 16.5523 16 16 16H4C3.44772 16 3 15.5523 3 15Z" fill="#4A5568"/>
+</svg>
+
+            </button>
         </nav> 
      
     </header>
@@ -80,15 +100,26 @@
         <section contenteditable="true" class="text--area">
         
         </section>
-         <section class="fonts--section  show">
-           <h2 contenteditable="true"> file name</h2>
+         <section class="fonts--section">
+           <button id='close--button' aria-label="close button">
+
+             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 18L18 6M6 6L18 18" stroke="#4A5568" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+           </button>
+           <h2 contenteditable="true" class="title"> <%if (data.filename== '') { %>
+          untitled
+<% }else{ %>
+     <%= data.filename %>
+<% } %>              </h2>
 
            <section class="font--type">
              <h3>Change font type</h3>
                 <section class="select--area">
              
               <select name="fontName" id="font-name" autocomplete="off"> 
-                <option value="" disabled  selected>select font type</option>
+             
              
             </select>
             <button class="drop">
@@ -158,7 +189,7 @@
              </section>
            </section>
            <section class="grid--section">
-             <button id="text-align">
+             <button id="justify">
                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
 <!--
 Font Awesome Free 5.15.0 by @fontawesome - https://fontawesome.com
@@ -166,7 +197,7 @@ License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL
 -->
 <path d="M432 160H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm0 256H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zM108.1 96h231.81A12.09 12.09 0 0 0 352 83.9V44.09A12.09 12.09 0 0 0 339.91 32H108.1A12.09 12.09 0 0 0 96 44.09V83.9A12.1 12.1 0 0 0 108.1 96zm231.81 256A12.09 12.09 0 0 0 352 339.9v-39.81A12.09 12.09 0 0 0 339.91 288H108.1A12.09 12.09 0 0 0 96 300.09v39.81a12.1 12.1 0 0 0 12.1 12.1z"/></svg>
              </button>
-                  <button id="text-align">
+                  <button id="center">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
 <!--
 Font Awesome Free 5.15.0 by @fontawesome - https://fontawesome.com
@@ -174,7 +205,7 @@ License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL
 -->
 <path d="M432 416H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm0-128H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm0-128H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm0-128H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z"/></svg>
                   </button>
-                       <button id="text-align">
+                       <button id="left">
                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
 <!--
 Font Awesome Free 5.15.0 by @fontawesome - https://fontawesome.com
@@ -182,7 +213,7 @@ License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL
 -->
 <path d="M12.83 352h262.34A12.82 12.82 0 0 0 288 339.17v-38.34A12.82 12.82 0 0 0 275.17 288H12.83A12.82 12.82 0 0 0 0 300.83v38.34A12.82 12.82 0 0 0 12.83 352zm0-256h262.34A12.82 12.82 0 0 0 288 83.17V44.83A12.82 12.82 0 0 0 275.17 32H12.83A12.82 12.82 0 0 0 0 44.83v38.34A12.82 12.82 0 0 0 12.83 96zM432 160H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm0 256H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16z"/></svg>
                        </button>
-                            <button id="text-align">
+                            <button id="right">
                               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
 <!--
 Font Awesome Free 5.15.0 by @fontawesome - https://fontawesome.com
@@ -193,8 +224,35 @@ License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL
                             
 
            </section>
-           
-        
+            <section class="headings--section">
+                <h3>headings</h3>
+              <section class="select--area">
+             
+               <select name="headings" id="headings" autocomplete="off">
+               <option value="" disabled  selected>select headings</option>
+               <option value="h1" style="font-size: 1.5rem;">heading1</option>
+               <option value="h2" style="font-size: 1.3rem;">heading2</option>
+               <option value="h3" style="font-size: 1.1rem;">heading3</option>
+               <option value="h4" style="font-size: 0.95rem;">heading4</option>
+               <option value="h5" style="font-size: 0.9rem;">heading5</option>
+               <option value="h6" style="font-size: 0.85rem;">heading6</option>
+            </select>
+              <button class="drop">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M19 9L12 16L5 9" stroke="#4A5568" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+            </button>
+             </section>
+
+           </section>
+           <section class="color--section">
+            <form action="">
+               <label for="color" id="add--color" >color</label>
+             <input type="text" name="color" id="color" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$">
+            </form>
+           </section>
+          
            
              
 
@@ -211,13 +269,16 @@ License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL
       
     </main>
 
-   
+   <section class="notifications hide ">
+     <small></small>
+
+   </section>
    
    
 
     
     
-   <script type='module' src="../js/notes.js"></script>
+   <script src="/js/notes.js"></script>
 </body>
 
 </html>

@@ -227,6 +227,9 @@ main .input--section .button---section button {
   width: 100%;
   height: 100%;
   resize: none;
+  overflow: hidden;
+  padding: 1em;
+  text-align: left;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -238,10 +241,26 @@ main .input--section .button---section button {
   font-weight: var(--fontWeight);
   -webkit-box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.2);
           box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.2);
+  cursor: default;
 }
 
 .container .notes--section {
+  position: relative;
   border-radius: 10px;
+}
+
+.container .notes--section .notes--overlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: black;
+}
+
+.container .notes--section .notes--overlay h2 {
+  font-size: 1rem;
+  text-transform: capitalize;
+  color: var(--Text-1);
 }
 
 .add--button {
@@ -380,23 +399,30 @@ main .input--section .button---section button {
 
 .notes--area .text--area {
   width: 100%;
-  background-color: var(--CardBG);
+  background-color: var(--BG);
   color: var(--Text-2);
-  font-family: var(--font);
-  font-weight: var(--fontWeight);
   padding: 1em;
   word-break: break-all;
   overflow: auto;
+}
+
+.notes--area .text--area p {
+  display: inline-block;
+}
+
+.notes--area .text--area h1 {
+  font-size: 2rem;
 }
 
 .fonts--section {
   -webkit-box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.4);
           box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.4);
   background-color: var(--Top-BG-Pattern);
-  position: absolute;
+  position: fixed;
   right: 0;
   bottom: 0;
   top: 0;
+  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -406,8 +432,16 @@ main .input--section .button---section button {
           flex-direction: column;
   padding: 2em;
   width: 15rem;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
   -webkit-transform: translateX(150%);
           transform: translateX(150%);
+}
+
+.fonts--section::-webkit-scrollbar {
+  display: none;
 }
 
 .fonts--section h2 {
@@ -465,8 +499,8 @@ main .input--section .button---section button {
 .fonts--section .grid--section {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (30px)[2];
-      grid-template-columns: repeat(2, 30px);
+  -ms-grid-columns: (30px)[4];
+      grid-template-columns: repeat(4, 30px);
   gap: 1rem;
   place-content: center;
 }
@@ -489,6 +523,99 @@ main .input--section .button---section button {
 
 .fonts--section .grid--section svg path {
   fill: var(--fill);
+}
+
+.color--section label {
+  text-transform: capitalize;
+  font-size: var(--font);
+  color: var(--Text-2);
+  font-family: var(--font);
+}
+
+.color--section input {
+  margin-top: 1em;
+  padding: 0.5em;
+  width: 100%;
+  height: 30px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: 1px solid var(--Blue);
+  border-radius: 3px;
+}
+
+#menu--button {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  margin-left: 0.3em;
+  background-color: unset;
+  cursor: pointer;
+}
+
+#menu--button svg {
+  pointer-events: none;
+}
+
+.notifications {
+  width: 250px;
+  height: 100px;
+  background: transparent;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: opacity 0.4s ease-in, -webkit-transform 0.4s ease-in;
+  transition: opacity 0.4s ease-in, -webkit-transform 0.4s ease-in;
+  transition: transform 0.4s ease-in, opacity 0.4s ease-in;
+  transition: transform 0.4s ease-in, opacity 0.4s ease-in, -webkit-transform 0.4s ease-in;
+  color: white;
+}
+
+.notifications small {
+  display: block;
+  background-color: #242424;
+  padding: 0 1em;
+  text-align: center;
+  height: 30px;
+  border-radius: 20px;
+  line-height: 30px;
+  letter-spacing: 1px;
+  -webkit-transform: translateY(250%) scale(0);
+          transform: translateY(250%) scale(0);
+}
+
+#close--button {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: unset;
+  cursor: pointer;
+}
+
+#close--button svg {
+  pointer-events: none;
+}
+
+.noti small {
+  -webkit-animation: noti 0.4s ease-in forwards;
+          animation: noti 0.4s ease-in forwards;
 }
 
 .temp {
@@ -534,6 +661,32 @@ main .input--section .button---section button {
   }
 }
 
+@-webkit-keyframes noti {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(250%) scale(0);
+            transform: translateY(250%) scale(0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0%) scale(1);
+            transform: translateY(0%) scale(1);
+  }
+}
+
+@keyframes noti {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(250%) scale(0);
+            transform: translateY(250%) scale(0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0%) scale(1);
+            transform: translateY(0%) scale(1);
+  }
+}
+
 .dark {
   --BG: hsl(228, 42%, 18%);
   --Top-BG-Pattern: hsl(225, 45%, 14%);
@@ -553,5 +706,41 @@ main .input--section .button---section button {
   --DesaturatedRed: hsl(0, 36%, 70%);
   --SoftRed: hsl(0, 93%, 68%);
   --DarkGrayishRed: hsl(0, 6%, 24%);
+}
+
+@media screen and (min-width: 481px) {
+  header {
+    max-width: 768px;
+  }
+  main {
+    max-width: 768px;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  header {
+    max-width: 900px;
+  }
+  main {
+    max-width: 900px;
+  }
+}
+
+@media screen and (min-width: 901px) {
+  header {
+    max-width: 1100px;
+  }
+  main {
+    max-width: 1100px;
+  }
+}
+
+@media screen and (min-width: 1101px) {
+  header {
+    max-width: 1440px;
+  }
+  main {
+    max-width: 1440px;
+  }
 }
 /*# sourceMappingURL=style.css.map */

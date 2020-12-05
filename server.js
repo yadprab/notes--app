@@ -1,13 +1,13 @@
 const express = require('express');
 
-const path = require('path');
 
 const fetch = require('node-fetch');
 
+require('dotenv').config();
 
 
-const API_KEY = `AIzaSyBMtY1tYsvlOy-2iG44fHRyoRj6H_9a1h8`;
 
+const API_KEY =`AIzaSyBMtY1tYsvlOy-2iG44fHRyoRj6H_9a1h8`;
 const URL = `https://www.googleapis.com/webfonts/v1/webfonts?key=${API_KEY}`;
 
 
@@ -21,16 +21,28 @@ const URL = `https://www.googleapis.com/webfonts/v1/webfonts?key=${API_KEY}`;
 
 const app = express();
 
-app.use(express.json());
 
 const bodyParser = require('body-parser')
 
 app.set('view engine', 'ejs')
 
-const urlencodedParser = bodyParser.urlencoded({ extended: false })
- 
+app.use(express.json());
 
-app.use(express.static('public'))
+
+
+const urlencodedParser = bodyParser.urlencoded({ extended: false })
+ app.use(bodyParser.urlencoded({
+  extended: true
+}));
+const jsonParser = bodyParser.json();
+app.use(bodyParser.json())
+
+
+app.use(express.static('public'));
+
+app.use(express.static('src'));
+
+
 
 
 app.get('/', (req, res)=>{
@@ -40,25 +52,32 @@ app.get('/', (req, res)=>{
 })
 
 app.get('/home', (req, res)=>{
-
+  
     res.sendFile(__dirname, 'index.html');
 
 })
 
-app.post('/notes',urlencodedParser,(req, res)=>{
 
-    res.render('notes');
+
+app.post('/notes/:name/:id',jsonParser,(req, res)=>{
+
+   
+    res.render('notes', {data:req.body})
+  
   
    
 
 })
 
-app.get('/notes', async(req, res)=>{
+app.get('/notes/:name/:id', async(req, res)=>{
+
+
+  
   
 const fetch_res = await fetch(URL)
 const res_json = await fetch_res.json();
 
-console.log(res_json);
+
 res.json(res_json.items);
   
    
