@@ -1,3 +1,4 @@
+
 const notesFn = ()=>{
 
     //get add button
@@ -9,19 +10,7 @@ const notesFn = ()=>{
            
           const form = sect.querySelector('form');
 
-const generateHtml = ()=>{
-
-      return `
-         <section class="notes--section">
-                <textarea name="text--area" id="text--area" readonly ></textarea>
-
-            </section>
-      
-      
-      
-      `
-
-}    
+   
 
 
 const addNotesFn =(e)=>{
@@ -92,7 +81,7 @@ console.log(loc);
    }
       
 localStorage.setItem('props', JSON.stringify(props));
-   fetch(urlParams.href, options).then(res=>res.json()).then(data=>data).catch(err=>err);
+   fetch(urlParams.href, options).then(res=>res).then(data=>data).catch(err=>err);
    
 }
 
@@ -153,6 +142,9 @@ if (localStorage.getItem('content')===null) {
                   <section class="notes--overlay">
                     <h2>${notes.title}</h2>
                 </section>
+                 <form method="post" class='inner--form' id='hiddenForm' style="visibility: hidden;">
+               <input type="hidden" id="custId" name='hidden-form'  readonly="readonly" value="${notes.id}">
+                 </form>
 
             </section>
       
@@ -173,11 +165,51 @@ if (localStorage.getItem('content')===null) {
    
  }else{
    const notesFn = (e)=>{
-     console.log(e.target.id);
   
-    const res= arr.filter(not=>not.id==e.target.id);
+    const parent = e.target.parentElement;
+    const innerForm = parent.querySelector('.inner--form');
+
+    const inp = innerForm.querySelector('input').value
+    console.log(innerForm);
+
+ const res= arr.filter(not=>not.id==e.target.id);
+ console.log(res);
+ 
+    const[{id, url,content, title}]=res;
+      
+    const urlEdit = `${url}/edit`;
+
+
+    const editObj = {
+      id,
+      url,
+      content,
+      title,
+      dummy:inp
+
+    }
+     const opt = {
+     method:'POST',
+     headers:{
+    'Content-Type': 'application/json'
+
+     },
+     body:JSON.stringify(editObj)
+
+
+   }
+
+
+   console.log(editObj);
+
+ 
+  innerForm.setAttribute('action', urlEdit)
     
-    const[{id, url}]=res;
+  innerForm.submit();
+
+       
+   
+      fetch(urlEdit, opt).then(res=>console.log(res)).then(data=>data).catch(err=>console.log(err))
  
    }
 

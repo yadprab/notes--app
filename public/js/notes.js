@@ -602,6 +602,10 @@ if (localStorage.getItem('content')===null) {
 }else{
   
   const update = JSON.parse(localStorage.getItem('content'));
+ console.log(location.href);
+  const expression =' ^http://example\.com/foo(?:/.*)?$'
+ 
+
   update.push(updateObj);
   console.log(updateObj);
  localStorage.setItem('content', JSON.stringify(update))

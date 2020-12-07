@@ -255,12 +255,14 @@ main .input--section .button---section button {
   right: 0;
   left: 0;
   background-color: black;
+  pointer-events: none;
 }
 
 .container .notes--section .notes--overlay h2 {
   font-size: 1rem;
   text-transform: capitalize;
   color: var(--Text-1);
+  pointer-events: none;
 }
 
 .add--button {
