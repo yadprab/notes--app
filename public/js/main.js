@@ -2,75 +2,62 @@
 const notesFn = ()=>{
 
     //get add button
-    const addButton = document.querySelector('#add--button');
+const addButton = document.querySelector('#add--button');
 
-        const container = document.querySelector('.container');
+const container = document.querySelector('.container');
 
-          const sect = document.querySelector('.notes--name');
+const sect = document.querySelector('.notes--name');
            
-          const form = sect.querySelector('form');
+const form = sect.querySelector('form');
 
    
-
-
 const addNotesFn =(e)=>{
 
-    sect.classList.remove('hide');
-    //get add file name section
+sect.classList.remove('hide');
+
+//get add file name section
 const submitFn =(e)=>{
 
-  
-   
-     const index = ()=>{
+   const index = ()=>{
     
     return   Math.random().toString(36).substr(2, 9);
-    }
-   const input = form.querySelector('input');
+    
+  }
+   
+const input = form.querySelector('input');
 
+const val = input.value;
 
-  
-   const val = input.value;
-
-
-  
-   const props ={
+const props ={
      id:index(),
      fileName: val.trim(),
-    
-    
-   }
-   
- 
-  
+}
 const {id,fileName}= props;
+
 const setFilename = (fileName)=>{
 let file = ''
 
 if (fileName=='') {
-
-  file = 'untitled';
+file = 'untitled';
   
 }else{
   file = fileName;
 }
 return file
  } 
-
-
 const changeQS=(id, name)=> {
 
-
-
-
- const loc = `${location.href}notes/${setFilename(name)}/${id}`
+const loc = `${location.href}notes/${setFilename(name)}/${id}`
 
 console.log(loc);
-    let urlParams = new URL(loc);
 
-    const action = form.setAttribute('action', urlParams.href);
+let urlParams = new URL(loc);
 
-    form.reset();
-   const options = {
+const action = form.setAttribute('action', urlParams.href);
+
+form.reset();
+
+const options = {
      method:'POST',
      headers:{
     'Content-Type': 'application/json'
@@ -81,45 +68,15 @@ console.log(loc);
    }
       
 localStorage.setItem('props', JSON.stringify(props));
-   fetch(urlParams.href, options).then(res=>res).then(data=>data).catch(err=>err);
+
+fetch(urlParams.href, options).then(res=>res).then(data=>data).catch(err=>err);
    
 }
-
-
-
-
 changeQS(id, fileName)
- 
-  
-
- 
-  
- 
-  
-
-  
- }
-
-
-
-
- form.addEventListener('submit',submitFn);
-    
-
-
-   
-
-
-
-
-
-
-
-
 }
 
-   
-
+form.addEventListener('submit',submitFn);
+}
 const fetchNotes = ()=>{
 
 if (localStorage.getItem('content')===null) {
@@ -127,16 +84,14 @@ if (localStorage.getItem('content')===null) {
   
 }else{
 
-  const notesData = JSON.parse(localStorage.getItem('content'));
-  const arr = [...notesData];
-  console.log(arr);
- container.innerHTML = notesData.map(notes=>{
+const notesData = JSON.parse(localStorage.getItem('content'));
 
-  return  `
+const arr = [...notesData];
  
- <section class="notes--section">
-               
-                <textarea name="text--area" id="${notes.id}" readonly >
+console.log(arr);
+container.innerHTML = notesData.map(notes=>{
+ return  `<section class="notes--section">
+               <textarea name="text--area" id="${notes.id}" readonly >
                    ${notes.content}
                 </textarea>
                   <section class="notes--overlay">
@@ -146,49 +101,41 @@ if (localStorage.getItem('content')===null) {
                <input type="hidden" id="custId" name='hidden-form'  readonly="readonly" value="${notes.id}">
                  </form>
 
-            </section>
-      
- 
- 
- 
- 
- `
+            </section`
+}).join('');
 
+const notesSect = document.querySelectorAll('.notes--section');
 
-
- }).join('');
-
- const notesSect = document.querySelectorAll('.notes--section');
-
- if (notesSect===null) {
+if (notesSect===null) {
    return;
    
- }else{
+}else{
    const notesFn = (e)=>{
-  
-    const parent = e.target.parentElement;
-    const innerForm = parent.querySelector('.inner--form');
+const parent = e.target.parentElement;
 
-    const inp = innerForm.querySelector('input').value
-    console.log(innerForm);
+const innerForm = parent.querySelector('.inner--form');
 
- const res= arr.filter(not=>not.id==e.target.id);
- console.log(res);
- 
-    const[{id, url,content, title}]=res;
+const inp = innerForm.querySelector('input').value
+   
+console.log(innerForm);
+
+const res= arr.filter(not=>not.id==e.target.id);
+
+console.log(res);
+
+const[{id, url,content, title}]=res;
       
-    const urlEdit = `${url}/edit`;
+const urlEdit = `${url}/edit`;
 
-
-    const editObj = {
+const editObj = {
       id,
       url,
       content,
       title,
       dummy:inp
+} 
 
-    }
-     const opt = {
+const opt = {
      method:'POST',
      headers:{
     'Content-Type': 'application/json'
@@ -197,53 +144,28 @@ if (localStorage.getItem('content')===null) {
      body:JSON.stringify(editObj)
 
 
-   }
+}
+console.log(editObj);
 
-
-   console.log(editObj);
-
- 
-  innerForm.setAttribute('action', urlEdit)
+innerForm.setAttribute('action', urlEdit)
     
-  innerForm.submit();
+innerForm.submit();
 
-       
-   
-      fetch(urlEdit, opt).then(res=>console.log(res)).then(data=>data).catch(err=>console.log(err))
+fetch(urlEdit, opt).then(res=>console.log(res)).then(data=>data).catch(err=>console.log(err))
  
-   }
-
-
-  notesSect.forEach(notes=>notes.addEventListener('click', notesFn));
-
- }
- 
- }
-
-
-
-
 }
 
+notesSect.forEach(notes=>notes.addEventListener('click', notesFn));
 
+ }
+ 
+ }
 
-
+}
 fetchNotes();
 //events--area
 
 addButton.addEventListener('click', addNotesFn);
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
 window.addEventListener('DOMContentLoaded', notesFn);

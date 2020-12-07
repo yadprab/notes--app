@@ -12,16 +12,12 @@ const notesAreaFn = ()=>{
 
  const optionSect = document.querySelector('.options--section');
 
-
 document.execCommand("defaultParagraphSeparator", false, "p");
 document.execCommand("defaultParagraphSeparator", false, "br");
-
 
 const showMenu=(e)=>{
   
 fontsSection.classList.add('show');
-
-
 const closeButton = document.querySelector('#close--button');
 
 const closeFn = ()=>{
@@ -42,18 +38,14 @@ ul.classList.toggle('hide')
 
 
 const headings = ()=>{
-  const headingType = fontsSection.querySelector('.headings--section');
+const headingType = fontsSection.querySelector('.headings--section');
 
-  const headingsSelect = headingType.querySelector('select');
-
-
+const headingsSelect = headingType.querySelector('select');
 
 const addHeadings =()=>{
 
-  const headingVal = headingsSelect.value;
- 
-
-  switch (headingVal) {
+const headingVal = headingsSelect.value;
+ switch (headingVal) {
    
     case 'h1':
       if (editArea.innerHTML.trim() === '') {
@@ -129,32 +121,18 @@ const addHeadings =()=>{
       
       break;
   
-   
-  
-   
-  
-   
-   
-  }
-  
-
-
-
 }
-
-
-
+  
+}
 
 headingsSelect.addEventListener('change',addHeadings)
+
 }
-
 const fetchData = () =>{
+//options to avoid cros error
+const url = location.href;
 
-  //options to avoid cros error
-
-  const url = location.href;
-
- const op = {
+const op = {
   
   method:'GET',
   headers:{
@@ -163,31 +141,20 @@ const fetchData = () =>{
   
   },
 
-
- }
-
-
+}
 //fetch data from backend
 fetch(url, op).then(res=>res.json()).then(data=>{
-
-  //copy that array data
-
-  if (data===null|| data.length==0 ) {
+//copy that array data
+if (data===null|| data.length==0 ) {
     return;
     
   }
-  const arr = [...data];
+const arr = [...data];
 
-  setFonts(arr)
+setFonts(arr)
 
  
 });
-
-
-
-
-
-
 
 }
 
@@ -210,53 +177,25 @@ const fontSelect = fontType.querySelector('select');
 const fontSelectHTML = arrData.map(dta=>{
 
 
-return `
-  
-   <option value="${dta.family}" >
+return `<option value="${dta.family}" >
    ${dta.family}
-   </option>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  `
-
-
-
-
-
-
-
-
+   </option>`
 }).join('');
 
 fontSelect.insertAdjacentHTML('afterbegin', fontSelectHTML);
 //innerHtml ends here
-
 //fontsFn starts here
 const fontsFn =()=>{
-
 //get both sections
-
 const fontWsection = document.querySelector('.fontweight');
-
-  //getVariant sect
-
+//getVariant sect
 const fontSub = document.querySelector('.font--subset');
-
-  //get font weight and  font type
+//get font weight and  font type
 const fontWeight = document.querySelector('#font--weight');
 
 const fontSubset = document.querySelector('#font--subset');
 
 const fontSize = document.querySelector('#font-Size');
-
 
 const index = fontSelect.selectedIndex;
 //get selectVal
@@ -270,102 +209,51 @@ const subSets = arrData[index].subsets;
 
 const fontItem =  arrData[index].files;
 
-
-console.log(arrData[index]);
-
-
-
 const fontTypeName = Object.keys(fontItem);
 
 const fontTypeUrl = Object.values(fontItem);
     
-
-
 editArea.style.fontFamily = `'${selectVal}', ${cateGory}`;
 
-  fontWsection.classList.remove('hide');
+fontWsection.classList.remove('hide');
 
-  const fontWeightHTML = variants.map(variant=>{
-  return `
-   
-   <option value="${variant}">
+const fontWeightHTML = variants.map(variant=>{
+  return `<option value="${variant}">
    ${variant}
-   </option>
-  
-  
-  
-  
-  `
+   </option>`
 }).join('');
 fontWeight.insertAdjacentHTML('beforeend', fontWeightHTML);
 //fw innerHtml ends here
 
-
 //set subset values
 fontSub.classList.remove('hide');
 const fontSubsetHTML = subSets.map(sub=>{
-  return `
-  
-   <option value="${sub}">
+  return `<option value="${sub}">
    ${sub}
-   </option>
-  
-  
-  
-  
-  `
+   </option>`
 }).join('');
 fontSubset.insertAdjacentHTML('beforeend', fontSubsetHTML)
 //fs innerHtml ends here
-
-
-
-
 // now set font face
 const styleElement = document.createElement('style');
 
 styleElement.appendChild(document.createTextNode(
 
-  `
-  @font-face{
+  `@font-face{
 
    font-family: '${selectVal}', ${cateGory};
    src:url('${fontTypeUrl.map(url=>url)}') format('ttf');
-
-
-
-
-
-
-  }
-  
-  
-  
-  
-  
-  
-  
-  
-  `
-
-
-
-
- ))
+}`))
 // //ele ends here
-
 document.head.appendChild(styleElement);
-
-
-
-
 
 const setFontVal =(e)=>{
 
- const target = e.target;
+const target = e.target;
 
- const targetVal = target.value;
- const check = /\b(\d*\.?\d+) *([a-zA-Z]+)/.test(targetVal);
+const targetVal = target.value;
+ 
+const check = /\b(\d*\.?\d+) *([a-zA-Z]+)/.test(targetVal);
 
 console.log(check);
 const targetId = target.id;
@@ -391,42 +279,16 @@ switch (targetId) {
        editArea.style.fontStyle = 'normal'
 
   }
-      
-
-     
-    
-    break;
-   
-
-     case 'font-Size':
+  break;
+   case 'font-Size':
      editArea.style.fontSize = ` ${targetVal}pt`
- 
-
-    
-    break;
+   break;
 
 }
-
-
-
-
-
-
 }
-
-
-
-
-
-
 [fontSize, fontWeight,fontSubset].forEach(type=>type.addEventListener('change', setFontVal))
 
 }
-
-
-
-
-
 //set event for select
 fontSelect.addEventListener('change', fontsFn)
 
@@ -434,9 +296,9 @@ fontSelect.addEventListener('change', fontsFn)
 
 const setColor = ()=>{
 
-  const colorSect = document.querySelector('.color--section');
+const colorSect = document.querySelector('.color--section');
  
- const colorForm = colorSect.querySelector('form');
+const colorForm = colorSect.querySelector('form');
 
 const addColor = (e)=>{
   
@@ -453,8 +315,7 @@ const addColor = (e)=>{
 
   }
 
-
-    colorForm.reset();  
+ colorForm.reset();  
 
 }
 
@@ -462,9 +323,9 @@ colorForm.addEventListener('submit', addColor);
 }
 
 const textAlign= ()=>{
-  const alignGrid = document.querySelector('.grid--section');
+const alignGrid = document.querySelector('.grid--section');
 
-  const alignButtons = alignGrid.querySelectorAll('button');
+ const alignButtons = alignGrid.querySelectorAll('button');
 
 
 const addAlign =(e)=>{
@@ -497,10 +358,7 @@ switch (target) {
      editArea.style.textAlign = 'left';
     break;
 }
-
-
 }
-
 alignButtons.forEach(button=>{button.addEventListener('click', addAlign)})
 
 }
@@ -537,7 +395,8 @@ const notifications = (id)=>{
       },1500)
      
       break;
-      case 'copy--button':
+     
+    case 'copy--button':
       notif.classList.remove('hide');
         notif.classList.add('noti')
         small.textContent = 'copied to clipboard';
@@ -550,20 +409,14 @@ const notifications = (id)=>{
      
       break;
             
-
-
-  }
-
-
-
 }
-
+}
 const asideArea =()=>{
-  const aside = document.querySelector('aside');
+const aside = document.querySelector('aside');
 
-  const asideButtons = aside.querySelectorAll('button');
+const asideButtons = aside.querySelectorAll('button');
 
-  const saveFn = ()=>{
+const saveFn = ()=>{
     const notes ={
          content:editArea.textContent.trim(),
          title:title.textContent.trim(),
@@ -620,7 +473,8 @@ if (localStorage.getItem('content')===null) {
    
 
   }
-    const deleteFn = ()=>{
+
+const deleteFn = ()=>{
 
       if (!editArea.classList.contains('saved')) {
          window.confirm('are you sure you want to delete the unsaved content');
@@ -638,13 +492,13 @@ if (localStorage.getItem('content')===null) {
    
 
   }
-   const copyFn =()=>{
+
+const copyFn =()=>{
      const selection = window.getSelection();
       
      document.execCommand('copy')
    }
-
-
+   
 const asideFn =(e)=>{
 
 const target = e.target.id;
@@ -667,16 +521,9 @@ switch (target) {
 
 
 }
-
-
-
 }
-
-  
 asideButtons.forEach(button=>{button.addEventListener('click', asideFn)});
 }
-
-
 fetchData();
 
 setColor();
@@ -687,16 +534,9 @@ asideArea();
 
 headings();
 
-
-
-
 menuButton.addEventListener('click', showMenu);
 
 optionSect.addEventListener('click', showNav);
 
 }
-
-
-
-
 window.addEventListener('DOMContentLoaded', notesAreaFn);
