@@ -1,94 +1,87 @@
+const notesFn = () => {
+  //get add button
+  const addButton = document.querySelector("#add--button");
 
-const notesFn = ()=>{
+  const container = document.querySelector(".container");
 
-    //get add button
-const addButton = document.querySelector('#add--button');
+  const sect = document.querySelector(".notes--name");
 
-const container = document.querySelector('.container');
+  const form = sect.querySelector("form");
 
-const sect = document.querySelector('.notes--name');
-           
-const form = sect.querySelector('form');
+  const optionSect = document.querySelector(".options--section");
 
-   
-const addNotesFn =(e)=>{
+  const addNotesFn = (e) => {
+    sect.classList.remove("hide");
 
-sect.classList.remove('hide');
+    //get add file name section
+    const submitFn = (e) => {
+      const index = () => {
+        return Math.random().toString(36).substr(2, 9);
+      };
 
-//get add file name section
-const submitFn =(e)=>{
+      const input = form.querySelector("input");
 
-   const index = ()=>{
-    
-    return   Math.random().toString(36).substr(2, 9);
-    
-  }
-   
-const input = form.querySelector('input');
+      const val = input.value;
 
-const val = input.value;
+      const props = {
+        id: index(),
+        fileName: val.trim(),
+      };
+      const { id, fileName } = props;
 
-const props ={
-     id:index(),
-     fileName: val.trim(),
-}
-const {id,fileName}= props;
+      const setFilename = (fileName) => {
+        let file = "";
 
-const setFilename = (fileName)=>{
-let file = ''
+        if (fileName == "") {
+          file = "untitled";
+        } else {
+          file = fileName;
+        }
+        return file;
+      };
+      const changeQS = (id, name) => {
+        const loc = `${location.href}notes/${setFilename(name)}/${id}`;
 
-if (fileName=='') {
-file = 'untitled';
-  
-}else{
-  file = fileName;
-}
-return file
- } 
-const changeQS=(id, name)=> {
+        console.log(loc);
 
-const loc = `${location.href}notes/${setFilename(name)}/${id}`
+        let urlParams = new URL(loc);
 
+        const action = form.setAttribute("action", urlParams.href);
 
-let urlParams = new URL(loc);
+        form.reset();
 
-const action = form.setAttribute('action', urlParams.href);
+        const options = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(props),
+        };
 
-form.reset();
+        localStorage.setItem("props", JSON.stringify(props));
 
-const options = {
-     method:'POST',
-     headers:{
-    'Content-Type': 'application/json'
+        fetch(urlParams.href, options)
+          .then((res) => res)
+          .then((data) => data)
+          .catch((err) => err);
+      };
+      changeQS(id, fileName);
+    };
 
-     },
-    body: JSON.stringify(props),
+    form.addEventListener("submit", submitFn);
+  };
+  const fetchNotes = () => {
+    if (localStorage.getItem("content") === null) {
+      return;
+    } else {
+      const notesData = JSON.parse(localStorage.getItem("content"));
 
-   }
-      
-localStorage.setItem('props', JSON.stringify(props));
+      const arr = [...notesData];
 
-fetch(urlParams.href, options).then(res=>res).then(data=>data).catch(err=>err);
-   
-}
-changeQS(id, fileName)
-}
-
-form.addEventListener('submit',submitFn);
-}
-const fetchNotes = ()=>{
-
-if (localStorage.getItem('content')===null) {
-  return;
-  
-}else{
-
-const notesData = JSON.parse(localStorage.getItem('content'));
-
-const arr = [...notesData];
-
-container.innerHTML = notesData.map(notes=>{
- return  `<section class="notes--section">
+      console.log(arr);
+      container.innerHTML = notesData
+        .map((notes) => {
+          return `<section class="notes--section">
                <textarea name="text--area" id="${notes.id}" readonly >
                    ${notes.content}
                 </textarea>
@@ -99,16 +92,23 @@ container.innerHTML = notesData.map(notes=>{
                <input type="hidden" id="custId" name='hidden-form'  readonly="readonly" value="${notes.id}">
                  </form>
 
-            </section`
-}).join('');
+            </section`;
+        })
+        .join("");
 
-}
+      const notesSect = document.querySelectorAll(".notes--section");
+    }
+  };
+  const showNav = (e) => {
+    const ul = optionSect.querySelector("ul");
 
-}
-fetchNotes();
-//events--area
+    ul.classList.toggle("hide");
+  };
+  fetchNotes();
+  //events--area
 
-addButton.addEventListener('click', addNotesFn);
+  addButton.addEventListener("click", addNotesFn);
 
-}
-window.addEventListener('DOMContentLoaded', notesFn);
+  optionSect.addEventListener("click", showNav);
+};
+window.addEventListener("DOMContentLoaded", notesFn);

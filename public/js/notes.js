@@ -227,6 +227,7 @@ const notesAreaFn = () => {
 
         const check = /\b(\d*\.?\d+) *([a-zA-Z]+)/.test(targetVal);
 
+        console.log(check);
         const targetId = target.id;
 
         switch (targetId) {
@@ -378,6 +379,7 @@ const notesAreaFn = () => {
       const { id, fileName } = contentObj;
 
       const updateObj = { id, ...notes };
+      console.log(updateObj);
 
       if (localStorage.getItem("content") === null) {
         const contentArr = [];
@@ -387,11 +389,11 @@ const notesAreaFn = () => {
         localStorage.setItem("content", JSON.stringify(contentArr));
       } else {
         const update = JSON.parse(localStorage.getItem("content"));
-
+        console.log(location.href);
         const expression = " ^http://example.com/foo(?:/.*)?$";
 
         update.push(updateObj);
-
+        console.log(updateObj);
         localStorage.setItem("content", JSON.stringify(update));
       }
     };
