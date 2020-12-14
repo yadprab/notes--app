@@ -227,7 +227,6 @@ const notesAreaFn = () => {
 
         const check = /\b(\d*\.?\d+) *([a-zA-Z]+)/.test(targetVal);
 
-        console.log(check);
         const targetId = target.id;
 
         switch (targetId) {
@@ -359,7 +358,7 @@ const notesAreaFn = () => {
 
     const asideButtons = aside.querySelectorAll("button");
 
-    const saveFn = () => {
+    const saveFn = (tar) => {
       const notes = {
         content: editArea.textContent.trim(),
         title: title.textContent.trim(),
@@ -379,7 +378,6 @@ const notesAreaFn = () => {
       const { id, fileName } = contentObj;
 
       const updateObj = { id, ...notes };
-      console.log(updateObj);
 
       if (localStorage.getItem("content") === null) {
         const contentArr = [];
@@ -389,30 +387,36 @@ const notesAreaFn = () => {
         localStorage.setItem("content", JSON.stringify(contentArr));
       } else {
         const update = JSON.parse(localStorage.getItem("content"));
-        console.log(location.href);
+
         const expression = " ^http://example.com/foo(?:/.*)?$";
 
         update.push(updateObj);
-        console.log(updateObj);
+
         localStorage.setItem("content", JSON.stringify(update));
       }
+
+      notifications(tar);
     };
 
-    const deleteFn = () => {
-      if (!editArea.classList.contains("saved")) {
-        window.confirm("are you sure you want to delete the unsaved content");
+    const deleteFn = (tar) => {
+      if (
+        window.confirm("are you sure you want to delete the content") &&
+        !editArea.classList.contains("saved")
+      ) {
         editArea.textContent = "";
+        notifications(tar);
       } else {
-        window.confirm("are you sure you want to delete the content");
-
-        editArea.textContent = "";
+        return;
       }
     };
 
-    const copyFn = () => {
+    const copyFn = (tar) => {
       const selection = window.getSelection();
-
-      document.execCommand("copy");
+      if (selection) {
+        document.execCommand("selectAll");
+        document.execCommand("copy");
+        notifications(tar);
+      }
     };
 
     const asideFn = (e) => {
@@ -420,17 +424,16 @@ const notesAreaFn = () => {
 
       switch (target) {
         case "save--button":
-          saveFn();
-          notifications(target);
+          saveFn(target);
 
           break;
         case "delete--button":
-          deleteFn();
-          notifications(target);
+          deleteFn(target);
+
           break;
         case "copy--button":
-          copyFn();
-          notifications(target);
+          copyFn(target);
+
           break;
       }
     };

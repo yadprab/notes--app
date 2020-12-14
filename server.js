@@ -32,13 +32,14 @@ app.get("/home", (req, res) => {
 
 app.post("/notes/:name/:id", jsonParser, (req, res) => {
   res.render("notes", { data: req.body });
+  console.log(req.body);
 });
 
 app.get("/notes/:name/:id", async (req, res) => {
   const fetch_res = await fetch(URL);
   const res_json = await fetch_res.json();
   res.json(res_json.items);
-  console.log(res_json);
+
 });
 
 const PORT = process.env.PORT || 3000;

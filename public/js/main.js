@@ -42,13 +42,9 @@ const notesFn = () => {
       const changeQS = (id, name) => {
         const loc = `${location.href}notes/${setFilename(name)}/${id}`;
 
-        console.log(loc);
-
         let urlParams = new URL(loc);
 
         const action = form.setAttribute("action", urlParams.href);
-
-        form.reset();
 
         const options = {
           method: "POST",
@@ -78,7 +74,6 @@ const notesFn = () => {
 
       const arr = [...notesData];
 
-      console.log(arr);
       container.innerHTML = notesData
         .map((notes) => {
           return `<section class="notes--section">
@@ -92,11 +87,9 @@ const notesFn = () => {
                <input type="hidden" id="custId" name='hidden-form'  readonly="readonly" value="${notes.id}">
                  </form>
 
-            </section`;
+            </section>`;
         })
         .join("");
-
-      const notesSect = document.querySelectorAll(".notes--section");
     }
   };
   const showNav = (e) => {

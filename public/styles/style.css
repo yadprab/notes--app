@@ -10,16 +10,16 @@
   --button--text: hsl(227, 45%, 30%);
   --accent: hsl(0, 93%, 68%);
   --border: rgba(0, 0, 0, 0.2);
-  --aside:hsl(0,0%,14%);
+  --aside: hsl(0, 0%, 14%);
   --asideTxt: hsl(0, 0%, 100%);
   --loader: hsl(240, 50%, 97%);
-  --fill:rgba(0, 0, 0, 0.8);
+  --fill: rgba(0, 0, 0, 0.8);
 }
 
 :root {
   --font: 'Lato',
         sans-serif;
-  --fontWeight:400;
+  --fontWeight: 400;
   --Blue: hsl(212, 86%, 64%);
 }
 
@@ -389,6 +389,45 @@ main .input--section .button---section button {
   padding: 1em;
   background-color: unset;
   cursor: pointer;
+  position: relative;
+}
+
+.notes--area aside button::after {
+  position: absolute;
+  content: '';
+  right: -50px;
+  top: 10px;
+  background-color: var(--Top-BG-Pattern);
+  padding: 0.2em 1em;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  opacity: 0;
+  font-family: var(--font);
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: opacity 0.4s ease, -webkit-transform 0.4s ease;
+  transition: opacity 0.4s ease, -webkit-transform 0.4s ease;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  transition: transform 0.4s ease, opacity 0.4s ease, -webkit-transform 0.4s ease;
+}
+
+.notes--area aside button:nth-child(1)::after {
+  content: 'save';
+}
+
+.notes--area aside button:nth-child(2)::after {
+  content: 'delete';
+}
+
+.notes--area aside button:nth-child(3)::after {
+  content: 'copy';
+}
+
+.notes--area aside button:hover::after {
+  opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
 }
 
 .notes--area aside button svg {
@@ -700,7 +739,7 @@ main .input--section .button---section button {
   --border: rgba(0, 0, 0, 0);
   --loader: hsl(0, 0%, 100%);
   --asideTxt: hsl(0, 0%, 100%);
-  --fill:hsl(0, 0%, 100%);
+  --fill: hsl(0, 0%, 100%);
 }
 
 .rosa {

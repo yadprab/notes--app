@@ -364,7 +364,40 @@ main {
             padding: 1em;
             background-color: unset;
             cursor: pointer;
+            position: relative;
 
+            &::after{
+             position: absolute;
+             content: '';
+              right: -50px;
+             top: 10px;
+             background-color: var(--Top-BG-Pattern);
+             padding: 0.2em 1em;
+             border-radius: 5px;
+             letter-spacing: 1px;
+             text-transform: capitalize;
+             opacity: 0;
+             font-family: var(--font);
+             transform: scale(0);
+             transition: transform 0.4s ease, opacity 0.4s ease;
+
+
+            }
+
+            &:nth-child(1)::after{
+                content: 'save';
+            }
+             &:nth-child(2)::after {
+                 content: 'delete';
+             }
+              &:nth-child(3)::after {
+                  content: 'copy';
+              }
+              
+              &:hover::after{
+                  opacity: 1;
+                  transform: scale(1);
+              }
 
 
 
