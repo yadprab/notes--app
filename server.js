@@ -6,7 +6,7 @@ require("dotenv").config();
 
 const API_KEY = process.env.KEY;
 
-console.log(process.env);
+
 const URL = `https://www.googleapis.com/webfonts/v1/webfonts?key=${API_KEY}`;
 
 const app = express();
