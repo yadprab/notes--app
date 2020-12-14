@@ -1,542 +1,453 @@
+const notesAreaFn = () => {
+  const fontsSection = document.querySelector(".fonts--section");
 
+  const editArea = document.querySelector(".text--area");
 
-const notesAreaFn = ()=>{
-  
- const fontsSection = document.querySelector('.fonts--section');
-  
- const editArea = document.querySelector('.text--area');
+  const title = document.querySelector(".title");
 
- const title = document.querySelector('.title');
+  const menuButton = document.querySelector("#menu--button");
 
- const menuButton = document.querySelector('#menu--button');
+  const optionSect = document.querySelector(".options--section");
 
- const optionSect = document.querySelector('.options--section');
+  document.execCommand("defaultParagraphSeparator", false, "p");
+  document.execCommand("defaultParagraphSeparator", false, "br");
 
-document.execCommand("defaultParagraphSeparator", false, "p");
-document.execCommand("defaultParagraphSeparator", false, "br");
+  const showMenu = (e) => {
+    fontsSection.classList.add("show");
+    const closeButton = document.querySelector("#close--button");
 
-const showMenu=(e)=>{
-  
-fontsSection.classList.add('show');
-const closeButton = document.querySelector('#close--button');
+    const closeFn = () => {
+      fontsSection.classList.remove("show");
+    };
 
-const closeFn = ()=>{
-  fontsSection.classList.remove('show');
-}
+    closeButton.addEventListener("click", closeFn);
+  };
 
-closeButton.addEventListener('click', closeFn);
+  const showNav = (e) => {
+    const ul = optionSect.querySelector("ul");
 
-}
+    ul.classList.toggle("hide");
+  };
 
-const showNav=(e)=>{
-  
-const ul = optionSect.querySelector('ul');
+  const headings = () => {
+    const headingType = fontsSection.querySelector(".headings--section");
 
-ul.classList.toggle('hide')
+    const headingsSelect = headingType.querySelector("select");
 
-}
+    const addHeadings = () => {
+      const headingVal = headingsSelect.value;
+      switch (headingVal) {
+        case "h1":
+          if (editArea.innerHTML.trim() === "") {
+            editArea.insertAdjacentHTML(
+              "afterbegin",
+              ` <h1>heading</h1>
+        `
+            );
+          } else {
+            editArea.insertAdjacentHTML(
+              "beforeend",
+              `<h1 >heading</h1>
+        `
+            );
+          }
 
+          break;
 
-const headings = ()=>{
-const headingType = fontsSection.querySelector('.headings--section');
+        case "h2":
+          if (editArea.innerHTML.trim() === "") {
+            editArea.insertAdjacentHTML("afterbegin", "<h2 >heading</h2>");
+          } else {
+            editArea.insertAdjacentHTML("beforeend", "<h2>heading</h2>");
+          }
 
-const headingsSelect = headingType.querySelector('select');
+          break;
 
-const addHeadings =()=>{
+        case "h3":
+          if (editArea.innerHTML.trim() === "") {
+            editArea.insertAdjacentHTML("afterbegin", "<h3>heading</h3>");
+          } else {
+            editArea.insertAdjacentHTML("beforeend", "<h3>heading</h3>");
+          }
 
-const headingVal = headingsSelect.value;
- switch (headingVal) {
-   
-    case 'h1':
-      if (editArea.innerHTML.trim() === '') {
+          break;
 
-        editArea.insertAdjacentHTML('afterbegin', ` <h1>heading</h1>
-        `)
-        
-      }else{
-       
-         editArea.insertAdjacentHTML('beforeend',`<h1 >heading</h1>
-        `)
+        case "h4":
+          if (editArea.innerHTML.trim() === "") {
+            editArea.insertAdjacentHTML("afterbegin", "<h4>heading</h4>");
+          } else {
+            editArea.insertAdjacentHTML("beforeend", "<h4>heading</h4>");
+          }
+
+          break;
+
+        case "h5":
+          if (editArea.innerHTML.trim() === "") {
+            editArea.insertAdjacentHTML("afterbegin", "<h5>heading1</h5>");
+          } else {
+            editArea.insertAdjacentHTML("beforeend", "<h5>heading1</h5>");
+          }
+
+          break;
+
+        case "h6":
+          if (editArea.innerHTML.trim() === "") {
+            editArea.insertAdjacentHTML("afterbegin", "<h6>heading</h6>");
+          } else {
+            editArea.insertAdjacentHTML("beforeend", "<h6>heading</h6>");
+          }
+
+          break;
       }
-      
-      break;
-      
-      case 'h2':
-      if (editArea.innerHTML.trim() === '') {
-       
-        editArea.insertAdjacentHTML('afterbegin', '<h2 >heading</h2>')
-        
-      }else{
-       
-         editArea.insertAdjacentHTML('beforeend', '<h2>heading</h2>')
-      }
-      
-      break;
-  
-      case 'h3':
-      if (editArea.innerHTML.trim() === '') {
+    };
 
-        editArea.insertAdjacentHTML('afterbegin', '<h3>heading</h3>')
-        
-      }else{
-       
-         editArea.insertAdjacentHTML('beforeend', '<h3>heading</h3>')
-      }
-      
-      break;
-  
-      case 'h4':
-      if (editArea.innerHTML.trim() === '') {
+    headingsSelect.addEventListener("change", addHeadings);
+  };
+  const fetchData = () => {
+    //options to avoid cros error
+    const url = location.href;
 
-        editArea.insertAdjacentHTML('afterbegin', '<h4>heading</h4>')
-        
-      }else{
-        
-         editArea.insertAdjacentHTML('beforeend', '<h4>heading</h4>')
-      }
-      
-      break;
-  
-      case 'h5':
-      if (editArea.innerHTML.trim() === '') {
+    const op = {
+      method: "GET",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    };
+    //fetch data from backend
+    fetch(url, op)
+      .then((res) => res.json())
+      .then((data) => {
+        //copy that array data
+        if (data === null || data.length == 0) {
+          return;
+        }
+        const arr = [...data];
 
-        editArea.insertAdjacentHTML('afterbegin', '<h5>heading1</h5>')
-        
-      }else{
-       
-         editArea.insertAdjacentHTML('beforeend', '<h5>heading1</h5>')
-      }
-      
-      break;
+        setFonts(arr);
+      });
+  };
 
-       case 'h6':
-      if (editArea.innerHTML.trim() === '') {
+  const setFonts = (arrData) => {
+    if (arrData === null || arrData.length == 0) {
+      return;
+    }
+    //get font type
 
-        editArea.insertAdjacentHTML('afterbegin', '<h6>heading</h6>')
-        
-      }else{
-      
-         editArea.insertAdjacentHTML('beforeend', '<h6>heading</h6>')
-      }
-      
-      break;
-  
-}
-  
-}
+    const fontType = fontsSection.querySelector(".font--type");
 
-headingsSelect.addEventListener('change',addHeadings)
+    //get select
 
-}
-const fetchData = () =>{
-//options to avoid cros error
-const url = location.href;
+    const fontSelect = fontType.querySelector("select");
 
-const op = {
-  
-  method:'GET',
-  headers:{
-    'Access-Control-Allow-Origin': '*',
-   
-  
-  },
+    //set option values
 
-}
-//fetch data from backend
-fetch(url, op).then(res=>res.json()).then(data=>{
-//copy that array data
-if (data===null|| data.length==0 ) {
-    return;
-    
-  }
-const arr = [...data];
-
-setFonts(arr)
-
- 
-});
-
-}
-
-const setFonts= (arrData)=>{
-
-if (arrData===null ||arrData.length==0) {
-  return;
-  
-}
-//get font type
-
-const fontType = fontsSection.querySelector('.font--type');
-
-//get select
-
-const fontSelect = fontType.querySelector('select');
-
-//set option values
-
-const fontSelectHTML = arrData.map(dta=>{
-
-
-return `<option value="${dta.family}" >
+    const fontSelectHTML = arrData
+      .map((dta) => {
+        return `<option value="${dta.family}" >
    ${dta.family}
-   </option>`
-}).join('');
+   </option>`;
+      })
+      .join("");
 
-fontSelect.insertAdjacentHTML('afterbegin', fontSelectHTML);
-//innerHtml ends here
-//fontsFn starts here
-const fontsFn =()=>{
-//get both sections
-const fontWsection = document.querySelector('.fontweight');
-//getVariant sect
-const fontSub = document.querySelector('.font--subset');
-//get font weight and  font type
-const fontWeight = document.querySelector('#font--weight');
+    fontSelect.insertAdjacentHTML("afterbegin", fontSelectHTML);
+    //innerHtml ends here
+    //fontsFn starts here
+    const fontsFn = () => {
+      //get both sections
+      const fontWsection = document.querySelector(".fontweight");
+      //getVariant sect
+      const fontSub = document.querySelector(".font--subset");
+      //get font weight and  font type
+      const fontWeight = document.querySelector("#font--weight");
 
-const fontSubset = document.querySelector('#font--subset');
+      const fontSubset = document.querySelector("#font--subset");
 
-const fontSize = document.querySelector('#font-Size');
+      const fontSize = document.querySelector("#font-Size");
 
-const index = fontSelect.selectedIndex;
-//get selectVal
-const selectVal = fontSelect.value;
+      const index = fontSelect.selectedIndex;
+      //get selectVal
+      const selectVal = fontSelect.value;
 
-const cateGory = arrData[index].category;
+      const cateGory = arrData[index].category;
 
-const variants = arrData[index].variants;
+      const variants = arrData[index].variants;
 
-const subSets = arrData[index].subsets;
+      const subSets = arrData[index].subsets;
 
-const fontItem =  arrData[index].files;
+      const fontItem = arrData[index].files;
 
-const fontTypeName = Object.keys(fontItem);
+      const fontTypeName = Object.keys(fontItem);
 
-const fontTypeUrl = Object.values(fontItem);
-    
-editArea.style.fontFamily = `'${selectVal}', ${cateGory}`;
+      const fontTypeUrl = Object.values(fontItem);
 
-fontWsection.classList.remove('hide');
+      editArea.style.fontFamily = `'${selectVal}', ${cateGory}`;
 
-const fontWeightHTML = variants.map(variant=>{
-  return `<option value="${variant}">
+      fontWsection.classList.remove("hide");
+
+      const fontWeightHTML = variants
+        .map((variant) => {
+          return `<option value="${variant}">
    ${variant}
-   </option>`
-}).join('');
-fontWeight.insertAdjacentHTML('beforeend', fontWeightHTML);
-//fw innerHtml ends here
+   </option>`;
+        })
+        .join("");
+      fontWeight.insertAdjacentHTML("beforeend", fontWeightHTML);
+      //fw innerHtml ends here
 
-//set subset values
-fontSub.classList.remove('hide');
-const fontSubsetHTML = subSets.map(sub=>{
-  return `<option value="${sub}">
+      //set subset values
+      fontSub.classList.remove("hide");
+      const fontSubsetHTML = subSets
+        .map((sub) => {
+          return `<option value="${sub}">
    ${sub}
-   </option>`
-}).join('');
-fontSubset.insertAdjacentHTML('beforeend', fontSubsetHTML)
-//fs innerHtml ends here
-// now set font face
-const styleElement = document.createElement('style');
+   </option>`;
+        })
+        .join("");
+      fontSubset.insertAdjacentHTML("beforeend", fontSubsetHTML);
+      //fs innerHtml ends here
+      // now set font face
+      const styleElement = document.createElement("style");
 
-styleElement.appendChild(document.createTextNode(
-
-  `@font-face{
+      styleElement.appendChild(
+        document.createTextNode(
+          `@font-face{
 
    font-family: '${selectVal}', ${cateGory};
-   src:url('${fontTypeUrl.map(url=>url)}') format('ttf');
-}`))
-// //ele ends here
-document.head.appendChild(styleElement);
+   src:url('${fontTypeUrl.map((url) => url)}') format('ttf');
+}`
+        )
+      );
+      // //ele ends here
+      document.head.appendChild(styleElement);
 
-const setFontVal =(e)=>{
+      const setFontVal = (e) => {
+        const target = e.target;
 
-const target = e.target;
+        const targetVal = target.value;
 
-const targetVal = target.value;
- 
-const check = /\b(\d*\.?\d+) *([a-zA-Z]+)/.test(targetVal);
+        const check = /\b(\d*\.?\d+) *([a-zA-Z]+)/.test(targetVal);
 
-console.log(check);
-const targetId = target.id;
+        const targetId = target.id;
 
-switch (targetId) {
-  case 'font--weight':
+        switch (targetId) {
+          case "font--weight":
+            if (check) {
+              editArea.style.fontWeight = `${targetVal.slice(0, 3)}`;
+              editArea.style.fontStyle = "italic";
+            } else if (targetVal == "regular") {
+              editArea.style.fontWeight = "normal";
+              editArea.style.fontStyle = "normal";
+            } else if (targetVal == "italic") {
+              editArea.style.fontWeight = "normal";
+              editArea.style.fontStyle = "italic";
+            } else {
+              editArea.style.fontWeight = `${targetVal}`;
+              editArea.style.fontStyle = "normal";
+            }
+            break;
+          case "font-Size":
+            editArea.style.fontSize = ` ${targetVal}pt`;
+            break;
+        }
+      };
+      [fontSize, fontWeight, fontSubset].forEach((type) =>
+        type.addEventListener("change", setFontVal)
+      );
+    };
+    //set event for select
+    fontSelect.addEventListener("change", fontsFn);
+  };
 
-  if (check) {
-    editArea.style.fontWeight = `${targetVal.slice(0,3)}`
-    editArea.style.fontStyle = 'italic'
-    
-  }else if(targetVal== 'regular'){
-     editArea.style.fontWeight = 'normal';
-       editArea.style.fontStyle = 'normal'
+  const setColor = () => {
+    const colorSect = document.querySelector(".color--section");
 
-  }
-  else if(targetVal== 'italic'){
-     editArea.style.fontWeight = 'normal';
-       editArea.style.fontStyle = 'italic'
+    const colorForm = colorSect.querySelector("form");
 
-  }else{
-     editArea.style.fontWeight = `${targetVal}`;
-       editArea.style.fontStyle = 'normal'
+    const addColor = (e) => {
+      e.preventDefault();
 
-  }
-  break;
-   case 'font-Size':
-     editArea.style.fontSize = ` ${targetVal}pt`
-   break;
+      const input = colorForm.querySelector("input").value;
 
-}
-}
-[fontSize, fontWeight,fontSubset].forEach(type=>type.addEventListener('change', setFontVal))
-
-}
-//set event for select
-fontSelect.addEventListener('change', fontsFn)
-
-}
-
-const setColor = ()=>{
-
-const colorSect = document.querySelector('.color--section');
- 
-const colorForm = colorSect.querySelector('form');
-
-const addColor = (e)=>{
-  
-  e.preventDefault();
-
-  const input = colorForm.querySelector('input').value;
-
-  if (input.trim()=='') {
-    return;
-    
-   
-  }else{
-    editArea.style.color = `${input}`;
-
-  }
-
- colorForm.reset();  
-
-}
-
-colorForm.addEventListener('submit', addColor);
-}
-
-const textAlign= ()=>{
-const alignGrid = document.querySelector('.grid--section');
-
- const alignButtons = alignGrid.querySelectorAll('button');
-
-
-const addAlign =(e)=>{
-
-const target = e.target.id;
-
-switch (target) {
-  case 'justify':
-
-   editArea.style.textAlign = 'justify';
-    
-    break;
-     case 'center':
-
-   editArea.style.textAlign = 'center';
-    
-    break;
-     case 'right':
-
-   editArea.style.textAlign = 'right';
-    
-    break;
-     case 'left':
-
-   editArea.style.textAlign = 'left';
-    
-    break;
-
-  default:
-     editArea.style.textAlign = 'left';
-    break;
-}
-}
-alignButtons.forEach(button=>{button.addEventListener('click', addAlign)})
-
-}
-
-const notifications = (id)=>{
-
-  const notif = document.querySelector('.notifications');
-
-  const small = notif.querySelector('small');
-
-  switch (id) {
-    case 'save--button':
-      notif.classList.remove('hide');
-        notif.classList.add('noti')
-        small.textContent = 'file saved';
-      setTimeout(()=>{
-   
-        notif.classList.add('hide')
-     
-            
-      },1500)
-     
-      break;
-  
-    case 'delete--button':
-      notif.classList.remove('hide');
-        notif.classList.add('noti')
-        small.textContent = 'file deleted';
-      setTimeout(()=>{
-   
-        notif.classList.add('hide')
-     
-            
-      },1500)
-     
-      break;
-     
-    case 'copy--button':
-      notif.classList.remove('hide');
-        notif.classList.add('noti')
-        small.textContent = 'copied to clipboard';
-      setTimeout(()=>{
-   
-        notif.classList.add('hide')
-     
-            
-      },1500)
-     
-      break;
-            
-}
-}
-const asideArea =()=>{
-const aside = document.querySelector('aside');
-
-const asideButtons = aside.querySelectorAll('button');
-
-const saveFn = ()=>{
-    const notes ={
-         content:editArea.textContent.trim(),
-         title:title.textContent.trim(),
-         url:location.href,
-
-
-
-
+      if (input.trim() == "") {
+        return;
+      } else {
+        editArea.style.color = `${input}`;
       }
+
+      colorForm.reset();
+    };
+
+    colorForm.addEventListener("submit", addColor);
+  };
+
+  const textAlign = () => {
+    const alignGrid = document.querySelector(".grid--section");
+
+    const alignButtons = alignGrid.querySelectorAll("button");
+
+    const addAlign = (e) => {
+      const target = e.target.id;
+
+      switch (target) {
+        case "justify":
+          editArea.style.textAlign = "justify";
+
+          break;
+        case "center":
+          editArea.style.textAlign = "center";
+
+          break;
+        case "right":
+          editArea.style.textAlign = "right";
+
+          break;
+        case "left":
+          editArea.style.textAlign = "left";
+
+          break;
+
+        default:
+          editArea.style.textAlign = "left";
+          break;
+      }
+    };
+    alignButtons.forEach((button) => {
+      button.addEventListener("click", addAlign);
+    });
+  };
+
+  const notifications = (id) => {
+    const notif = document.querySelector(".notifications");
+
+    const small = notif.querySelector("small");
+
+    switch (id) {
+      case "save--button":
+        notif.classList.remove("hide");
+        notif.classList.add("noti");
+        small.textContent = "file saved";
+        setTimeout(() => {
+          notif.classList.add("hide");
+        }, 1500);
+
+        break;
+
+      case "delete--button":
+        notif.classList.remove("hide");
+        notif.classList.add("noti");
+        small.textContent = "file deleted";
+        setTimeout(() => {
+          notif.classList.add("hide");
+        }, 1500);
+
+        break;
+
+      case "copy--button":
+        notif.classList.remove("hide");
+        notif.classList.add("noti");
+        small.textContent = "copied to clipboard";
+        setTimeout(() => {
+          notif.classList.add("hide");
+        }, 1500);
+
+        break;
+    }
+  };
+  const asideArea = () => {
+    const aside = document.querySelector("aside");
+
+    const asideButtons = aside.querySelectorAll("button");
+
+    const saveFn = () => {
+      const notes = {
+        content: editArea.textContent.trim(),
+        title: title.textContent.trim(),
+        url: location.href,
+      };
 
       document.title = notes.title;
 
-     
-      
-       editArea.classList.add('saved');
+      editArea.classList.add("saved");
 
-       if (localStorage.getItem('props')===null) {
-         return;
-         
-       }
-      
-       const contentObj = JSON.parse(localStorage.getItem('props'));
-
-       const {id, fileName} = contentObj;
-
-const updateObj = { id, ...notes} 
-console.log(updateObj);
-
-if (localStorage.getItem('content')===null) {
-  const contentArr=[];
-
-  contentArr.push(updateObj);
-
-  localStorage.setItem('content', JSON.stringify(contentArr))
-  
-}else{
-  
-  const update = JSON.parse(localStorage.getItem('content'));
- console.log(location.href);
-  const expression =' ^http://example\.com/foo(?:/.*)?$'
- 
-
-  update.push(updateObj);
-  console.log(updateObj);
- localStorage.setItem('content', JSON.stringify(update))
-  
-
-
-
-}
-
-
-
-   
-
-  }
-
-const deleteFn = ()=>{
-
-      if (!editArea.classList.contains('saved')) {
-         window.confirm('are you sure you want to delete the unsaved content');
-           editArea.textContent = '';
-      
-      }else{
-        window.confirm('are you sure you want to delete the content');
-
-         editArea.textContent = '';
-      
+      if (localStorage.getItem("props") === null) {
+        return;
       }
-  
-     
 
-   
+      const contentObj = JSON.parse(localStorage.getItem("props"));
 
-  }
+      const { id, fileName } = contentObj;
 
-const copyFn =()=>{
-     const selection = window.getSelection();
-      
-     document.execCommand('copy')
-   }
-   
-const asideFn =(e)=>{
+      const updateObj = { id, ...notes };
 
-const target = e.target.id;
+      if (localStorage.getItem("content") === null) {
+        const contentArr = [];
 
-switch (target) {
-  case 'save--button':
-     saveFn();
-     notifications(target);
-    
-    break;
-     case 'delete--button':
-    deleteFn();
-      notifications(target);
-    break;
-     case 'copy--button':
-    copyFn();
-      notifications(target);
-    break;
+        contentArr.push(updateObj);
 
+        localStorage.setItem("content", JSON.stringify(contentArr));
+      } else {
+        const update = JSON.parse(localStorage.getItem("content"));
 
+        const expression = " ^http://example.com/foo(?:/.*)?$";
 
-}
-}
-asideButtons.forEach(button=>{button.addEventListener('click', asideFn)});
-}
-fetchData();
+        update.push(updateObj);
 
-setColor();
+        localStorage.setItem("content", JSON.stringify(update));
+      }
+    };
 
-textAlign();
+    const deleteFn = () => {
+      if (!editArea.classList.contains("saved")) {
+        window.confirm("are you sure you want to delete the unsaved content");
+        editArea.textContent = "";
+      } else {
+        window.confirm("are you sure you want to delete the content");
 
-asideArea();
+        editArea.textContent = "";
+      }
+    };
 
-headings();
+    const copyFn = () => {
+      const selection = window.getSelection();
 
-menuButton.addEventListener('click', showMenu);
+      document.execCommand("copy");
+    };
 
-optionSect.addEventListener('click', showNav);
+    const asideFn = (e) => {
+      const target = e.target.id;
 
-}
-window.addEventListener('DOMContentLoaded', notesAreaFn);
+      switch (target) {
+        case "save--button":
+          saveFn();
+          notifications(target);
+
+          break;
+        case "delete--button":
+          deleteFn();
+          notifications(target);
+          break;
+        case "copy--button":
+          copyFn();
+          notifications(target);
+          break;
+      }
+    };
+    asideButtons.forEach((button) => {
+      button.addEventListener("click", asideFn);
+    });
+  };
+  fetchData();
+
+  setColor();
+
+  textAlign();
+
+  asideArea();
+
+  headings();
+
+  menuButton.addEventListener("click", showMenu);
+
+  optionSect.addEventListener("click", showNav);
+};
+window.addEventListener("DOMContentLoaded", notesAreaFn);

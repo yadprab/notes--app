@@ -49,25 +49,12 @@ const res_json = await fetch_res.json();
 res.json(res_json.items);
 })
 
-app.post('/notes/:name/:id/edit',jsonParser,(req, res)=>{
-
-const[ {id, title,url, content}]=arr
-res.render('editArea')
-})
-
-app.get('/notes/:name/:id/edit', async(req, res)=>{
-const fetch_res = await fetch(URL)
-const res_json = await fetch_res.json();
-res.json(res_json.items);
-})
 
 const PORT = process.env.PORT || 3000;
 
 
 
-app.listen(PORT, ()=>{
-    console.log('im in');
-})
+app.listen(PORT, ()=>{})
 
 
 

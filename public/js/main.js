@@ -49,7 +49,6 @@ const changeQS=(id, name)=> {
 
 const loc = `${location.href}notes/${setFilename(name)}/${id}`
 
-console.log(loc);
 
 let urlParams = new URL(loc);
 
@@ -87,8 +86,7 @@ if (localStorage.getItem('content')===null) {
 const notesData = JSON.parse(localStorage.getItem('content'));
 
 const arr = [...notesData];
- 
-console.log(arr);
+
 container.innerHTML = notesData.map(notes=>{
  return  `<section class="notes--section">
                <textarea name="text--area" id="${notes.id}" readonly >
@@ -104,62 +102,7 @@ container.innerHTML = notesData.map(notes=>{
             </section`
 }).join('');
 
-const notesSect = document.querySelectorAll('.notes--section');
-
-if (notesSect===null) {
-   return;
-   
-}else{
-   const notesFn = (e)=>{
-const parent = e.target.parentElement;
-
-const innerForm = parent.querySelector('.inner--form');
-
-const inp = innerForm.querySelector('input').value
-   
-console.log(innerForm);
-
-const res= arr.filter(not=>not.id==e.target.id);
-
-console.log(res);
-
-const[{id, url,content, title}]=res;
-      
-const urlEdit = `${url}/edit`;
-
-const editObj = {
-      id,
-      url,
-      content,
-      title,
-      dummy:inp
-} 
-
-const opt = {
-     method:'POST',
-     headers:{
-    'Content-Type': 'application/json'
-
-     },
-     body:JSON.stringify(editObj)
-
-
 }
-console.log(editObj);
-
-innerForm.setAttribute('action', urlEdit)
-    
-innerForm.submit();
-
-fetch(urlEdit, opt).then(res=>console.log(res)).then(data=>data).catch(err=>console.log(err))
- 
-}
-
-notesSect.forEach(notes=>notes.addEventListener('click', notesFn));
-
- }
- 
- }
 
 }
 fetchNotes();
